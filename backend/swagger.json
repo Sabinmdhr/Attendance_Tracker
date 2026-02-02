@@ -1,0 +1,842 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Attendance Management System API",
+    "description": "Mock REST API for React Attendance Management System project. This API provides endpoints for authentication, attendance tracking, leave management, and user administration.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "email": "support@example.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001/api",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Login and authentication endpoints"
+    },
+    {
+      "name": "User - Attendance",
+      "description": "User attendance marking and viewing"
+    },
+    {
+      "name": "User - Leave Requests",
+      "description": "User leave request management"
+    },
+    {
+      "name": "Admin - Users",
+      "description": "Admin user management operations"
+    },
+    {
+      "name": "Admin - Attendance",
+      "description": "Admin attendance viewing"
+    },
+    {
+      "name": "Admin - Leaves",
+      "description": "Admin leave request management"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Enter the token received from login endpoint"
+      }
+    },
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "admin"
+          },
+          "password": {
+            "type": "string",
+            "example": "admin_"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "YWRtaW46YWRtaW46MTcwNzMyNDUwMDAwMA=="
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "example": "1" },
+              "username": { "type": "string", "example": "admin" },
+              "role": { "type": "string", "example": "admin" },
+              "name": { "type": "string", "example": "Administrator" },
+              "email": { "type": "string", "example": "admin@example.com" }
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "1" },
+          "username": { "type": "string", "example": "john_doe" },
+          "role": { "type": "string", "enum": ["user", "admin"], "example": "user" },
+          "name": { "type": "string", "example": "John Doe" },
+          "email": { "type": "string", "example": "john@example.com" }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "required": ["username", "password", "role"],
+        "properties": {
+          "username": { "type": "string", "example": "new_user" },
+          "password": { "type": "string", "example": "password123" },
+          "role": { "type": "string", "enum": ["user", "admin"], "example": "user" },
+          "name": { "type": "string", "example": "New User" },
+          "email": { "type": "string", "example": "newuser@example.com" }
+        }
+      },
+      "Attendance": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "1" },
+          "userId": { "type": "string", "example": "john_doe" },
+          "date": { "type": "string", "format": "date", "example": "2026-02-02" },
+          "status": { "type": "string", "example": "Present" },
+          "timestamp": { "type": "string", "format": "date-time", "example": "2026-02-02T09:30:00Z" }
+        }
+      },
+      "AttendanceStats": {
+        "type": "object",
+        "properties": {
+          "totalDays": { "type": "integer", "example": 10 },
+          "presentDays": { "type": "integer", "example": 8 },
+          "absentDays": { "type": "integer", "example": 2 },
+          "percentage": { "type": "number", "format": "float", "example": 80.0 }
+        }
+      },
+      "LeaveRequest": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "1" },
+          "userId": { "type": "string", "example": "john_doe" },
+          "startDate": { "type": "string", "format": "date", "example": "2026-02-10" },
+          "endDate": { "type": "string", "format": "date", "example": "2026-02-12" },
+          "reason": { "type": "string", "example": "Medical appointment" },
+          "status": { "type": "string", "enum": ["Pending", "Approved", "Rejected"], "example": "Pending" },
+          "createdAt": { "type": "string", "format": "date-time", "example": "2026-01-20T10:00:00Z" },
+          "reviewedBy": { "type": "string", "example": "admin" },
+          "reviewedAt": { "type": "string", "format": "date-time", "example": "2026-01-21T09:00:00Z" },
+          "rejectionReason": { "type": "string", "example": "Insufficient notice" }
+        }
+      },
+      "CreateLeaveRequest": {
+        "type": "object",
+        "required": ["startDate", "endDate", "reason"],
+        "properties": {
+          "startDate": { "type": "string", "format": "date", "example": "2026-02-20" },
+          "endDate": { "type": "string", "format": "date", "example": "2026-02-22" },
+          "reason": { "type": "string", "example": "Family function" }
+        }
+      },
+      "ApproveRejectLeave": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "type": "string", "enum": ["Approved", "Rejected"], "example": "Approved" },
+          "rejectionReason": { "type": "string", "example": "Insufficient notice period" }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string", "example": "Error message" }
+        }
+      },
+      "SuccessMessage": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string", "example": "Operation successful" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "User login",
+        "description": "Authenticate user and receive a token. Use admin/admin_ for admin access or john_doe/password123 for user access.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" },
+              "examples": {
+                "admin": {
+                  "summary": "Admin Login",
+                  "value": { "username": "admin", "password": "admin_" }
+                },
+                "user": {
+                  "summary": "User Login",
+                  "value": { "username": "john_doe", "password": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LoginResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing fields",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attendance": {
+      "post": {
+        "tags": ["User - Attendance"],
+        "summary": "Mark attendance for today",
+        "description": "Mark attendance as Present for current day. Can only be done once per day.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "201": {
+            "description": "Attendance marked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "attendance": { "$ref": "#/components/schemas/Attendance" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Attendance already marked for today",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - no token or invalid token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attendance/me": {
+      "get": {
+        "tags": ["User - Attendance"],
+        "summary": "Get own attendance history",
+        "description": "Retrieve all attendance records for the authenticated user",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Attendance records retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Attendance" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attendance/stats": {
+      "get": {
+        "tags": ["User - Attendance"],
+        "summary": "Get attendance statistics",
+        "description": "Get attendance statistics including total days, present days, and percentage",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Statistics retrieved",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AttendanceStats" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaves/me": {
+      "get": {
+        "tags": ["User - Leave Requests"],
+        "summary": "Get own leave requests",
+        "description": "Retrieve all leave requests for the authenticated user",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Leave requests retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/LeaveRequest" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaves": {
+      "post": {
+        "tags": ["User - Leave Requests"],
+        "summary": "Create leave request",
+        "description": "Create a new leave request",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateLeaveRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Leave request created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "leave": { "$ref": "#/components/schemas/LeaveRequest" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing fields",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaves/{id}": {
+      "put": {
+        "tags": ["User - Leave Requests"],
+        "summary": "Update leave request",
+        "description": "Update a pending leave request. Only pending requests can be updated.",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Leave request ID",
+            "example": "1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateLeaveRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Leave request updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "leave": { "$ref": "#/components/schemas/LeaveRequest" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can only update pending requests",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "404": {
+            "description": "Leave request not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User - Leave Requests"],
+        "summary": "Delete leave request",
+        "description": "Delete a pending leave request. Only pending requests can be deleted.",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Leave request ID",
+            "example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Leave request deleted",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessMessage" }
+              }
+            }
+          },
+          "400": {
+            "description": "Can only delete pending requests",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "404": {
+            "description": "Leave request not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "tags": ["Admin - Users"],
+        "summary": "Get all users",
+        "description": "Retrieve all users (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Users retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/User" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin - Users"],
+        "summary": "Create user",
+        "description": "Create a new user (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "user": { "$ref": "#/components/schemas/User" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Username already exists or missing required fields",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/{id}": {
+      "put": {
+        "tags": ["Admin - Users"],
+        "summary": "Update user",
+        "description": "Update user details (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "User ID",
+            "example": "2"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" },
+                  "role": { "type": "string" },
+                  "name": { "type": "string" },
+                  "email": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "user": { "$ref": "#/components/schemas/User" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin - Users"],
+        "summary": "Delete user",
+        "description": "Delete a user (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "User ID",
+            "example": "2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/attendance/{username}": {
+      "get": {
+        "tags": ["Admin - Attendance"],
+        "summary": "Get user's attendance",
+        "description": "Get attendance records for a specific user (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Username",
+            "example": "john_doe"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance records retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Attendance" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/leaves": {
+      "get": {
+        "tags": ["Admin - Leaves"],
+        "summary": "Get all leave requests",
+        "description": "Get all leave requests with optional filters (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": { "type": "string", "enum": ["Pending", "Approved", "Rejected"] },
+            "description": "Filter by status",
+            "example": "Pending"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Filter by username",
+            "example": "john_doe"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Leave requests retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/LeaveRequest" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/leaves/{id}": {
+      "patch": {
+        "tags": ["Admin - Leaves"],
+        "summary": "Approve or reject leave request",
+        "description": "Approve or reject a leave request (admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Leave request ID",
+            "example": "1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ApproveRejectLeave" },
+              "examples": {
+                "approve": {
+                  "summary": "Approve Leave",
+                  "value": { "status": "Approved" }
+                },
+                "reject": {
+                  "summary": "Reject Leave",
+                  "value": { "status": "Rejected", "rejectionReason": "Insufficient notice" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Leave request updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "leave": { "$ref": "#/components/schemas/LeaveRequest" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "404": {
+            "description": "Leave request not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          },
+          "403": {
+            "description": "Admin access required",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

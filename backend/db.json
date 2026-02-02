@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin_",
+      "role": "admin",
+      "name": "Administrator",
+      "email": "admin@example.com"
+    },
+    {
+      "id": "2",
+      "username": "john_doe",
+      "password": "password123",
+      "role": "user",
+      "name": "John Doe",
+      "email": "john@example.com"
+    },
+    {
+      "id": "3",
+      "username": "jane_smith",
+      "password": "password123",
+      "role": "user",
+      "name": "Jane Smith",
+      "email": "jane@example.com"
+    },
+    {
+      "id": "4",
+      "username": "bob_wilson",
+      "password": "password123",
+      "role": "user",
+      "name": "Bob Wilson",
+      "email": "bob@example.com"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "1",
+      "userId": "john_doe",
+      "date": "2026-01-15",
+      "status": "Present",
+      "timestamp": "2026-01-15T09:30:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "john_doe",
+      "date": "2026-01-16",
+      "status": "Present",
+      "timestamp": "2026-01-16T09:15:00Z"
+    },
+    {
+      "id": "3",
+      "userId": "john_doe",
+      "date": "2026-01-17",
+      "status": "Present",
+      "timestamp": "2026-01-17T09:45:00Z"
+    },
+    {
+      "id": "4",
+      "userId": "jane_smith",
+      "date": "2026-01-15",
+      "status": "Present",
+      "timestamp": "2026-01-15T09:20:00Z"
+    },
+    {
+      "id": "5",
+      "userId": "jane_smith",
+      "date": "2026-01-16",
+      "status": "Present",
+      "timestamp": "2026-01-16T09:10:00Z"
+    },
+    {
+      "id": "6",
+      "userId": "bob_wilson",
+      "date": "2026-01-15",
+      "status": "Present",
+      "timestamp": "2026-01-15T09:35:00Z"
+    },
+    {
+      "id": "1770012248799",
+      "userId": "admin",
+      "date": "2026-02-02",
+      "status": "Present",
+      "timestamp": "2026-02-02T06:04:08.799Z"
+    }
+  ],
+  "leaves": [
+    {
+      "id": "1",
+      "userId": "john_doe",
+      "startDate": "2026-02-10",
+      "endDate": "2026-02-12",
+      "reason": "Medical appointment and recovery",
+      "status": "Pending",
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "jane_smith",
+      "startDate": "2026-01-25",
+      "endDate": "2026-01-26",
+      "reason": "Family emergency",
+      "status": "Approved",
+      "createdAt": "2026-01-18T14:30:00Z",
+      "reviewedBy": "admin",
+      "reviewedAt": "2026-01-19T09:00:00Z"
+    },
+    {
+      "id": "3",
+      "userId": "bob_wilson",
+      "startDate": "2026-02-05",
+      "endDate": "2026-02-05",
+      "reason": "Personal work",
+      "status": "Rejected",
+      "createdAt": "2026-01-22T11:15:00Z",
+      "reviewedBy": "admin",
+      "reviewedAt": "2026-01-23T10:30:00Z",
+      "rejectionReason": "Insufficient notice period"
+    },
+    {
+      "id": "1770017668608",
+      "userId": "jane_smith",
+      "startDate": "2026-02-23",
+      "endDate": "2026-02-23",
+      "reason": "Trekkiing with family",
+      "status": "Pending",
+      "createdAt": "2026-02-02T07:34:28.608Z"
+    }
+  ]
+}
