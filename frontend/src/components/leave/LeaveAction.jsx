@@ -11,18 +11,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 
-const UserForm = () => {
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+
+const LeaveAction = () => {
   return (
     <div>
       <Dialog>
         <form>
           <DialogTrigger asChild>
-            <Button>Create +</Button>
+            <Button>View</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-sm">
             <DialogHeader>
@@ -32,6 +41,19 @@ const UserForm = () => {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-3 py-4">
+              <div className="w-full">
+                <Select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="user">User</SelectItem>
+                      <SelectItem value="admin">Admin</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="username-1">Username</Label>
                 <Input
@@ -53,9 +75,9 @@ const UserForm = () => {
 
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline">Reject</Button>
               </DialogClose>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit">Accept</Button>
             </DialogFooter>
           </DialogContent>
         </form>
@@ -64,4 +86,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default LeaveAction;
