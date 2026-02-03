@@ -1,22 +1,16 @@
-import { useState } from "react";
-import { GalleryVerticalEndIcon } from "./components/icons/lucide-gallery-vertical-end";
-import { LoginForm } from "./components/login-form";
-import { Button } from "@/components/ui/button";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "./components/app-sidebar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Dashboard from "./pages/user/Dashboard";
+import AdminDashboard from "./pages/admin/Dashboard";
 function App() {
-
   return (
-    <>
-      <SidebarProvider>
-        <AppSidebar />
-        <main>
-          <SidebarTrigger />
-        </main>
-      </SidebarProvider>
-      <Login />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
