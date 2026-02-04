@@ -9,24 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-        <Route
-          path="/"
-          element={<Login />}
-        />
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-        <Route
-          path="/adminDashboard"
-          element={<AdminDashboard />}
-        />
-        <Route
-          path="/leaveManagement"
-          element={<LeaveManagement />}
-        />
-
+        <Route path="/" element={<Login />} />
+        <Route path="/user-dashboard" element={<Dashboard />} />{" "}
+        <Route path="/admin-Dashboard" element={<AdminDashboard />} />
+        <Route path="/leaveManagement" element={<LeaveManagement />} />
+        <Route path="/leaves" element={<Leaves />} />
       </Routes>
     </BrowserRouter>
   );
