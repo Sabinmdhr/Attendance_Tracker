@@ -3,11 +3,13 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import LeaveManagement from "./pages/admin/LeaveManagement";
+import Leaves from "./pages/user/Leaves";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route
           path="/"
           element={<Login />}
@@ -24,6 +26,7 @@ function App() {
           path="/leaveManagement"
           element={<LeaveManagement />}
         />
+
       </Routes>
     </BrowserRouter>
   );
