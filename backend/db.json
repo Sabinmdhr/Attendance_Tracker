@@ -42,6 +42,13 @@
       "timestamp": "2026-01-15T09:30:00Z"
     },
     {
+      "id": "1",
+      "userId": "john_doe",
+      "date": "2026-01-25",
+      "status": "absent",
+      "timestamp": "2026-01-25T09:30:00Z"
+    },
+    {
       "id": "2",
       "userId": "john_doe",
       "date": "2026-01-16",

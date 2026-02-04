@@ -1,12 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import UserForm from "@/components/users/UserForm";
 import UserTable from "@/components/users/UserTable";
+import axios from "axios";
 
 const Dashboard = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await axios.get("http://localhost:3001/api/users");
+      setUsers(res.data);
+    };
+
+    fetchUsers();
+  }, []);
+  console.log(users);
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -43,7 +55,7 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <UserTable />
+        <UserTable users={users} />
       </div>
     </div>
   );

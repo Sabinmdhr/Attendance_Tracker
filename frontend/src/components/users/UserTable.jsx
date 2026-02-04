@@ -9,26 +9,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import EditUser from "./EditUser";
 
-const UserTable = ({ leaves }) => {
+const UserTable = ({ users }) => {
   return (
     <div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-35">S.N.</TableHead>
-            <TableHead className="text-center">Name of the Student</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-center">Username</TableHead>
+            <TableHead className="w-1/4 text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
 
-        <TableBody className="text-center">
-          {leaves.map((leave, index) => (
-            <TableRow key={leave.id}>
-              <TableCell className="font-medium">{index + 1}.</TableCell>
-              <TableCell>{leave.userId}</TableCell>
-              <TableCell>
-                <ConfirmDialog leave={leave} />
+        <TableBody>
+          {users.map((user, index) => (
+            <TableRow key={user.id}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{user.username}</TableCell>
+
+              <TableCell className="text-right">
+                <EditUser user={user} />
               </TableCell>
             </TableRow>
           ))}

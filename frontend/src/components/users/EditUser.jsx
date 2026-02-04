@@ -1,0 +1,101 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Field, FieldGroup } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Eye, X } from "lucide-react";
+
+import { PencilLine } from "lucide-react";
+
+const EditUser = ({ user }) => {
+  return (
+    <div className="flex items-end justify-end gap-1">
+      <div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline">
+              <Eye />
+            </Button>
+          </DialogTrigger>
+          <DialogContent
+            className="sm:max-w-md"
+            showCloseButton={false}
+          >
+            <DialogHeader>
+              <DialogTitle>Details of the User: {user.username}</DialogTitle>
+              <DialogDescription>
+                This dialog has a custom close button in the header.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="py-6">
+              <p className="text-sm text-muted-foreground">
+                You can customize the close button position and style to match
+                your design needs.
+              </p>
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="default">Close</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+      <Dialog>
+        <form>
+          <DialogTrigger asChild>
+            <Button variant="outline">
+              <PencilLine />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-sm">
+            <DialogHeader>
+              <DialogTitle>Edit User Details</DialogTitle>
+              <DialogDescription>
+                Make changes to user detail's here. Click save when you&apos;re
+                done.
+              </DialogDescription>
+            </DialogHeader>
+            <FieldGroup>
+              <Field>
+                <Label htmlFor="username-1">Username</Label>
+                <Input
+                  id="username-1"
+                  name="username"
+                  placeholder="Sushant Basnet"
+                />
+              </Field>
+              <Field>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Create password "
+                />
+              </Field>
+            </FieldGroup>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Save changes</Button>
+            </DialogFooter>
+          </DialogContent>
+        </form>
+      </Dialog>
+    </div>
+  );
+};
+
+export default EditUser;
