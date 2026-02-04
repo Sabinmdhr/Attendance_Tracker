@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 import { Calendar } from "@/components/ui/calendar";
 const AttendanceCalendar = () => {
-const [date, setDate] = React.useState(new Date());
-const presentDates = [
-  new Date(2026, 1, 3), // Feb 3
-  new Date(2026, 1, 5), // Feb 5
-  new Date(2026, 1, 10), // Feb 10
-];
+  const [date, setDate] = React.useState(new Date());
+  const presentDates = [
+    new Date(2026, 1, 3), // Feb 3
+    new Date(2026, 1, 5), // Feb 5
+    new Date(2026, 1, 10), // Feb 10
+  ];
   return (
     <div>
       <Calendar
@@ -24,6 +24,6 @@ const presentDates = [
       />
     </div>
   );
-}
+};
 
-export default AttendanceCalendar
+export default AttendanceCalendar;

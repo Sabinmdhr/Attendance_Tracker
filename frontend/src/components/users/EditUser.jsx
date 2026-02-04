@@ -18,6 +18,7 @@ import { PencilLine } from "lucide-react";
 import AttendanceChart from "../AttendanceChart";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
+import AttendanceCalendar from "../attendance/AttendanceCalendar";
 
 const EditUser = ({ user }) => {
   const [stats, setStats] = useState(null);
@@ -56,7 +57,7 @@ const EditUser = ({ user }) => {
 
     fetchStats();
   }, []);
-  
+
   return (
     <div className="flex items-end justify-end gap-1">
       <div>
@@ -67,22 +68,26 @@ const EditUser = ({ user }) => {
             </Button>
           </DialogTrigger>
           <DialogContent
-            className="sm:max-w-md"
+            className="max-w-6xl w-full max-h-[90vh] overflow-y-auto"
             showCloseButton={false}
           >
             <DialogHeader>
               <DialogTitle>Details of the User: {user.username}</DialogTitle>
-              <DialogDescription>
-                This dialog has a custom close button in the header.
-              </DialogDescription>
             </DialogHeader>
 
-            <div className="py-6">
-              <AttendanceChart
-                present={stats?.presentDays || 0}
-                total={stats?.totalDays || 1}
-              />
+            <div className="py-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start w-full">
+              <div className="w-full overflow-x-auto">
+                <AttendanceCalendar />
+              </div>
+
+              <div className="flex justify-center">
+                <AttendanceChart
+                  present={stats?.presentDays || 0}
+                  total={stats?.totalDays || 1}
+                />
+              </div>
             </div>
+
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="default">Close</Button>

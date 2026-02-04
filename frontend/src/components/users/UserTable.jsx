@@ -18,7 +18,7 @@ const UserTable = ({ users }) => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-35">S.N.</TableHead>
-            <TableHead className="text-center">Username</TableHead>
+            <TableHead className="text-center">Name</TableHead>
             <TableHead className="w-1/4 text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -27,7 +27,7 @@ const UserTable = ({ users }) => {
           {users.map((user, index) => (
             <TableRow key={user.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{user.username}</TableCell>
+              <TableCell>{user.name}</TableCell>
 
               <TableCell className="text-right">
                 <EditUser user={user} />

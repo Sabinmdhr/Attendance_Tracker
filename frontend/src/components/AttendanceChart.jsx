@@ -4,17 +4,15 @@ import * as recharts from "recharts";
 // const present = 18;
 // const total = 20;
 
-
-
 // Aesthetic colors
 const COLORS = ["#6EE7B7", "#FCA5A5"]; // Pastel green / pastel red
 
 export default function AttendanceChart(props) {
   const percentage = ((props.present / props.total) * 100).toFixed(1);
-const data = [
-  { name: "Present", value: props.present },
-  { name: "Absent", value: props.total - props.present },
-];
+  const data = [
+    { name: "Present", value: props.present },
+    { name: "Absent", value: props.total - props.present },
+  ];
   return (
     <div className="flex flex-col items-center">
       {/* Card can wrap the chart elsewhere */}

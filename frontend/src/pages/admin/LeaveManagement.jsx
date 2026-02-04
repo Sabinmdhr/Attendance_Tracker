@@ -17,12 +17,18 @@ const LeaveManagement = () => {
 
   return (
     <div className="mx-18 mt-12">
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <Link to="/admin-Dashboard">
           <Button>Go Back</Button>
         </Link>
+        <div className="flex gap-3 items-center mr-[38%]">
+          <Button>All</Button>
+          <Button>Pending</Button>
+          <Button>Approved</Button>
+          <Button>Rejected</Button>
+        </div>
       </div>
-      <div>
+      <div className="mt-15">
         <LeaveTable leaves={leaves} />
       </div>
     </div>
