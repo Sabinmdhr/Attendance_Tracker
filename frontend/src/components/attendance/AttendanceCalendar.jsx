@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 import { Calendar } from "@/components/ui/calendar";
 const AttendanceCalendar = () => {
@@ -20,6 +20,6 @@ const presentDates=[]
       />
     </div>
   );
-}
+};
 
-export default AttendanceCalendar
+export default AttendanceCalendar;

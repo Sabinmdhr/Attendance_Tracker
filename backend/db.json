@@ -24,6 +24,7 @@
       "name": "Jane Smith",
       "email": "jane@example.com"
     },
+
     {
       "id": "4",
       "username": "bob_wilson",
@@ -31,6 +32,14 @@
       "role": "user",
       "name": "Bob Wilson",
       "email": "bob@example.com"
+    },
+    {
+      "id": "5",
+      "username": "sushant_basnet",
+      "password": "sushant",
+      "role": "admin",
+      "name": "Sushant Basnet",
+      "email": "sushant@example.com"
     }
   ],
   "attendance": [
@@ -45,7 +54,7 @@
       "id": "1",
       "userId": "john_doe",
       "date": "2026-01-25",
-      "status": "absent",
+      "status": "Present",
       "timestamp": "2026-01-25T09:30:00Z"
     },
     {

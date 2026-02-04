@@ -1,63 +1,46 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Field } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import UserForm from "@/components/users/UserForm";
 import UserTable from "@/components/users/UserTable";
 import axios from "axios";
+import SearchUser from "@/components/users/SearchUser";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
+  const [searchVal, setSearchVal] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await axios.get("http://localhost:3001/api/users");
       setUsers(res.data);
     };
-
     fetchUsers();
   }, []);
 
-  // console.log(users);
+  const searchWords = searchVal.toLowerCase().trim().split(/\s+/);
 
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const filteredUsers = users.filter((user) =>
+    searchWords.every((word) => user.username.toLowerCase().includes(word)),
+  );
 
   return (
     <div>
-      <div className=" p-5 justify-between flex items-center border-b border-gray-300 shadow-md m-5">
-        <div>
-          <h1 className="text-2xl font-bold">Welcome Back,</h1>
-          <p className="text-lg">Sushant</p>
-        </div>
-        <div className="text-lg">{formattedDate}</div>
-      </div>
-
       <div className="mx-18 mt-12">
         <div className="flex gap-4.5 justify-between items-center m-5">
           <UserForm />
-          <Field
-            orientation="horizontal"
-            className="w-[50%]"
-          >
-            <Input
-              type="search"
-              placeholder="Search..."
-            />
-            <Button>Search</Button>
-          </Field>
+
+          <SearchUser
+            searchVal={searchVal}
+            setSearchVal={setSearchVal}
+          />
+
           <Link to="/leaveManagement">
             <Button>View Leave Requests</Button>
           </Link>
         </div>
 
-        <UserTable users={users} />
+        <UserTable users={filteredUsers} />
       </div>
     </div>
   );
