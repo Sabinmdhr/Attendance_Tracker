@@ -1,26 +1,15 @@
-import LeaveAction from "@/components/leave/LeaveAction";
 import { Button } from "@/components/ui/button";
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ConfirmDialog from "@/components/common/ConfirmDialog";
 import axios from "axios";
+import LeaveTable from "@/components/leave/LeaveTable";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
 
   useEffect(() => {
     const fetchLeaves = async () => {
-      const res = await axios.get("http://localhost:3001/leaves");
+      const res = await axios.get("http://localhost:3001/api/leaves");
       setLeaves(res.data);
     };
     fetchLeaves();
@@ -32,12 +21,9 @@ const LeaveManagement = () => {
         <Link to="/admindashboard">
           <Button>Go Back</Button>
         </Link>
-
-        <LeaveAction />
       </div>
-
       <div>
-        <UserTable leaves={leaves} />
+        <LeaveTable leaves={leaves} />
       </div>
     </div>
   );

@@ -22,7 +22,10 @@ const data = [
         <p className="text-lg font-bold">Attendance: {percentage}%</p>
       </div>
 
-      <recharts.PieChart width={250} height={250}>
+      <recharts.PieChart
+        width={250}
+        height={250}
+      >
         <recharts.Pie
           data={data}
           cx="50%"
@@ -32,7 +35,10 @@ const data = [
           label
         >
           {data.map((entry, index) => (
-            <recharts.Cell key={index} fill={COLORS[index]} />
+            <recharts.Cell
+              key={index}
+              fill={COLORS[index]}
+            />
           ))}
         </recharts.Pie>
         <recharts.Tooltip />
