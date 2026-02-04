@@ -41,19 +41,7 @@ const LeaveAction = () => {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-3 py-4">
-              <div className="w-full">
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="user">User</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+              <div className="w-full"></div>
               <div className="grid gap-2">
                 <Label htmlFor="username-1">Username</Label>
                 <Input
