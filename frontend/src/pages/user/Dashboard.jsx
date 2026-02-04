@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AttendanceChart from '@/components/AttendanceChart';
 import { Calendar } from '@/components/ui/calendar';
+import api from '@/lib/api';
 import AttendanceCalendar from '@/components/attendance/AttendanceCalendar';
 import LeaveCard from '@/components/users/LeaveCard';
 const Dashboard = () => {
-const [date, setDate] = React.useState(new Date());
+
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
  const today = new Date();
  const formattedDate = today.toLocaleDateString("en-US", {
    weekday: "long",
@@ -20,13 +24,59 @@ const presentDates = [
   new Date(2026, 1, 5), // Feb 5
   new Date(2026, 1, 10), // Feb 10
 ];
+
+useEffect(() =>{
+  // const storedUser = localStorage.getItem("user");
+  // if(storedUser){
+  //   setUser (JSON.parse(storedUser));
+  // }
+
+ const fetchStats = async () => {
+   try {
+     const token = localStorage.getItem("token");
+     const user = JSON.parse(localStorage.getItem("user"));
+
+     if (!token || !user) {
+       setError("User not logged in");
+       setLoading(false);
+       return;
+     }
+
+     // Call backend stats endpoint
+     const res = await api.get("/attendance/stats", {
+       headers: {
+         Authorization: `Bearer ${token}`,
+       },
+     });
+
+     setStats(res.data);
+     setLoading(false);
+   } catch (err) {
+     console.error("Error fetching stats:", err.response?.data || err.message);
+     setError("Failed to fetch attendance stats");
+     setLoading(false);
+   }
+ };
+
+ fetchStats();
+
+
+},[]);
+
+
+  if (loading) return <p>Loading attendance stats...</p>;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div>
       <div className=" px-8 py-5 justify-between   flex items-center border-b border-gray-300 shadow-md m-5">
         <div>
           <h1 className="text-2xl font-bold">Welcome Back</h1>
-          <p className="text-lg">John Doe</p>
+          <p className="text-lg">{user?.name || "Guest"}</p>
+
         </div>
+
         <div className="text-lg">
           <p>{formattedDate}</p>
         </div>
@@ -39,7 +89,7 @@ const presentDates = [
         <div>
           <Card>
             <CardContent>
-              <AttendanceChart />
+              <AttendanceChart present={stats?.presentDays || 0} total={stats?.totalDays || 1} />
             </CardContent>
           </Card>
         </div>

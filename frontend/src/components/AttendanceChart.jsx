@@ -1,20 +1,20 @@
 import * as recharts from "recharts";
 
 // Example attendance data
-const present = 18;
-const total = 20;
+// const present = 18;
+// const total = 20;
 
-const data = [
-  { name: "Present", value: present },
-  { name: "Absent", value: total - present },
-];
+
 
 // Aesthetic colors
 const COLORS = ["#6EE7B7", "#FCA5A5"]; // Pastel green / pastel red
 
-export default function AttendanceChart() {
-  const percentage = ((present / total) * 100).toFixed(1);
-
+export default function AttendanceChart(props) {
+  const percentage = ((props.present / props.total) * 100).toFixed(1);
+const data = [
+  { name: "Present", value: props.present },
+  { name: "Absent", value: props.total - props.present },
+];
   return (
     <div className="flex flex-col items-center">
       {/* Card can wrap the chart elsewhere */}
