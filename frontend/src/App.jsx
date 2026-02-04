@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import LeaveManagement from "./pages/admin/LeaveManagement";
+import Leaves from "./pages/user/Leaves";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
         <Route
           path="/leaveManagement"
           element={<LeaveManagement />}
+        />
+        <Route
+          path="/leaves"
+          element={<Leaves />}
         />
       </Routes>
     </BrowserRouter>
