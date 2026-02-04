@@ -18,7 +18,9 @@ const Dashboard = () => {
 
     fetchUsers();
   }, []);
-  console.log(users);
+
+  // console.log(users);
+
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
     weekday: "long",

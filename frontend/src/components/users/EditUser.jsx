@@ -12,11 +12,51 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, X } from "lucide-react";
+import { Eye } from "lucide-react";
 
 import { PencilLine } from "lucide-react";
+import AttendanceChart from "../AttendanceChart";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 
 const EditUser = ({ user }) => {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!token || !user) {
+          setError("User not logged in");
+          setLoading(false);
+          return;
+        }
+
+        // Call backend stats endpoint
+        const res = await api.get("/attendance/stats", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setStats(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error(
+          "Error fetching stats:",
+          err.response?.data || err.message,
+        );
+        setError("Failed to fetch attendance stats");
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+  
   return (
     <div className="flex items-end justify-end gap-1">
       <div>
@@ -38,10 +78,10 @@ const EditUser = ({ user }) => {
             </DialogHeader>
 
             <div className="py-6">
-              <p className="text-sm text-muted-foreground">
-                You can customize the close button position and style to match
-                your design needs.
-              </p>
+              <AttendanceChart
+                present={stats?.presentDays || 0}
+                total={stats?.totalDays || 1}
+              />
             </div>
             <DialogFooter>
               <DialogClose asChild>
