@@ -37,7 +37,7 @@
     {
       "id": "1",
       "userId": "john_doe",
-      "date": "2026-01-15",
+      "date": "2026-02-15",
       "status": "Present",
       "timestamp": "2026-01-15T09:30:00Z"
     },
@@ -89,6 +89,13 @@
       "date": "2026-02-02",
       "status": "Present",
       "timestamp": "2026-02-02T06:04:08.799Z"
+    },
+    {
+      "id": "1770200493570",
+      "userId": "john_doe",
+      "date": "2026-02-04",
+      "status": "Present",
+      "timestamp": "2026-02-04T10:21:33.570Z"
     }
   ],
   "leaves": [
