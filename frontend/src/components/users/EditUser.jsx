@@ -19,45 +19,12 @@ import AttendanceChart from "../AttendanceChart";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import AttendanceCalendar from "../attendance/AttendanceCalendar";
+import useAttendanceStats from "@/hooks/useAttendanceStats";
 
 const EditUser = ({ user }) => {
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const user = JSON.parse(localStorage.getItem("user"));
 
-        if (!token || !user) {
-          setError("User not logged in");
-          setLoading(false);
-          return;
-        }
-
-        // Call backend stats endpoint
-        const res = await api.get("/attendance/stats", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setStats(res.data);
-        setLoading(false);
-      } catch (err) {
-        console.error(
-          "Error fetching stats:",
-          err.response?.data || err.message,
-        );
-        setError("Failed to fetch attendance stats");
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, []);
-
+const {stats, loading, error} = useAttendanceStats();
   return (
     <div className="flex items-end justify-end gap-1">
       <div>

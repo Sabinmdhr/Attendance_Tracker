@@ -1,25 +1,27 @@
 import React from "react";
-
 import { Calendar } from "@/components/ui/calendar";
-const AttendanceCalendar = () => {
-const [date, setDate] = React.useState(new Date());
-const presentDates=[]
+
+export default function AttendanceCalendar({ presentDates = [] }) {
+  const [selectedDate, setSelectedDate] = React.useState(null);
+
+  // normalize present dates to remove time
+  const normalizedDates = presentDates.map(
+    (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+  );
+
   return (
-    <div>
+    <div className="h-full  rounded-lg border border-gray-300 shadow-md p-4">
       <Calendar
         mode="single"
-        selected={date}
-        onSelect={setDate}
-        className="h-full w-full rounded-lg border border-gray-300 shadow-md p-4"
+        selected={selectedDate}
+        onSelect={setSelectedDate}
         modifiers={{
-          present: presentDates, // Dates when student is present
+          present: normalizedDates,
         }}
         modifiersClassNames={{
-          present: "bg-green-500 text-white rounded-full",
+          present: "bg-green-600 text-white rounded-full",
         }}
       />
     </div>
   );
-};
-
-export default AttendanceCalendar;
+}
