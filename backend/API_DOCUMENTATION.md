@@ -25,11 +25,13 @@ The server will start on `http://localhost:3001`
 **Recommended for Testing!**
 
 Open your browser and navigate to:
+
 ```
 http://localhost:3001/api-docs
 ```
 
 You'll get:
+
 - ✅ Visual, interactive API explorer
 - ✅ Test all endpoints directly from browser
 - ✅ No need for Postman or cURL
@@ -37,9 +39,10 @@ You'll get:
 - ✅ Built-in authentication support
 
 **Quick Start with Swagger**:
+
 1. Go to `http://localhost:3001/api-docs`
 2. Click on `POST /login` → "Try it out"
-3. Use credentials: admin/admin_
+3. Use credentials: admin/admin\_
 4. Copy the token from response
 5. Click "Authorize" button at top
 6. Paste token and click "Authorize"
@@ -52,10 +55,12 @@ See `SWAGGER_GUIDE.md` for detailed Swagger tutorial.
 ## Default Credentials
 
 ### Admin Account
+
 - **Username:** `admin`
 - **Password:** `admin_`
 
 ### User Accounts
+
 - **Username:** `john_doe` | **Password:** `password123`
 - **Username:** `jane_smith` | **Password:** `password123`
 - **Username:** `bob_wilson` | **Password:** `password123`
@@ -65,6 +70,7 @@ See `SWAGGER_GUIDE.md` for detailed Swagger tutorial.
 ## API Endpoints
 
 ### Base URL
+
 ```
 http://localhost:3001/api
 ```
@@ -74,9 +80,11 @@ http://localhost:3001/api
 ## Authentication Endpoints
 
 ### Login
+
 **POST** `/api/login`
 
 **Request Body:**
+
 ```json
 {
   "username": "admin",
@@ -85,6 +93,7 @@ http://localhost:3001/api
 ```
 
 **Response (200):**
+
 ```json
 {
   "token": "base64_encoded_token",
@@ -99,6 +108,7 @@ http://localhost:3001/api
 ```
 
 **Error Response (401):**
+
 ```json
 {
   "error": "Invalid credentials"
@@ -106,6 +116,7 @@ http://localhost:3001/api
 ```
 
 **Note:** Store the token in localStorage and include it in all subsequent requests as:
+
 ```
 Authorization: Bearer {token}
 ```
@@ -115,14 +126,17 @@ Authorization: Bearer {token}
 ## User Endpoints (Requires Authentication)
 
 ### Mark Attendance
+
 **POST** `/api/attendance`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response (201):**
+
 ```json
 {
   "message": "Attendance marked successfully",
@@ -137,6 +151,7 @@ Authorization: Bearer {token}
 ```
 
 **Error Response (400):**
+
 ```json
 {
   "error": "Attendance already marked for today"
@@ -146,14 +161,17 @@ Authorization: Bearer {token}
 ---
 
 ### Get Own Attendance
+
 **GET** `/api/attendance/me`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response (200):**
+
 ```json
 [
   {
@@ -176,34 +194,40 @@ Authorization: Bearer {token}
 ---
 
 ### Get Attendance Statistics
+
 **GET** `/api/attendance/stats`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "totalDays": 10,
   "presentDays": 8,
   "absentDays": 2,
-  "percentage": 80.00
+  "percentage": 80.0
 }
 ```
 
 ---
 
 ### Get Own Leave Requests
+
 **GET** `/api/leaves/me`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response (200):**
+
 ```json
 [
   {
@@ -221,14 +245,17 @@ Authorization: Bearer {token}
 ---
 
 ### Create Leave Request
+
 **POST** `/api/leaves`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Request Body:**
+
 ```json
 {
   "startDate": "2026-02-20",
@@ -238,6 +265,7 @@ Authorization: Bearer {token}
 ```
 
 **Response (201):**
+
 ```json
 {
   "message": "Leave request created successfully",
@@ -256,14 +284,17 @@ Authorization: Bearer {token}
 ---
 
 ### Update Leave Request
+
 **PUT** `/api/leaves/:id`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Request Body:**
+
 ```json
 {
   "startDate": "2026-02-21",
@@ -273,6 +304,7 @@ Authorization: Bearer {token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "message": "Leave request updated successfully",
@@ -289,6 +321,7 @@ Authorization: Bearer {token}
 ```
 
 **Error Response (400):**
+
 ```json
 {
   "error": "Can only update pending leave requests"
@@ -298,14 +331,17 @@ Authorization: Bearer {token}
 ---
 
 ### Delete Leave Request
+
 **DELETE** `/api/leaves/:id`
 
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "message": "Leave request deleted successfully"
@@ -313,6 +349,7 @@ Authorization: Bearer {token}
 ```
 
 **Error Response (400):**
+
 ```json
 {
   "error": "Can only delete pending leave requests"
@@ -324,14 +361,17 @@ Authorization: Bearer {token}
 ## Admin Endpoints (Requires Admin Role)
 
 ### Get All Users
+
 **GET** `/api/admin/users`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Response (200):**
+
 ```json
 [
   {
@@ -354,14 +394,17 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Create User
+
 **POST** `/api/admin/users`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Request Body:**
+
 ```json
 {
   "username": "new_user",
@@ -373,6 +416,7 @@ Authorization: Bearer {admin_token}
 ```
 
 **Response (201):**
+
 ```json
 {
   "message": "User created successfully",
@@ -387,6 +431,7 @@ Authorization: Bearer {admin_token}
 ```
 
 **Error Response (400):**
+
 ```json
 {
   "error": "Username already exists"
@@ -396,14 +441,17 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Update User
+
 **PUT** `/api/admin/users/:id`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Request Body:**
+
 ```json
 {
   "name": "Updated Name",
@@ -413,6 +461,7 @@ Authorization: Bearer {admin_token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "message": "User updated successfully",
@@ -429,14 +478,17 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Delete User
+
 **DELETE** `/api/admin/users/:id`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "message": "User deleted successfully"
@@ -446,14 +498,17 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Get User's Attendance (by username)
+
 **GET** `/api/admin/attendance/:username`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Response (200):**
+
 ```json
 [
   {
@@ -469,18 +524,22 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Get All Leave Requests
+
 **GET** `/api/admin/leaves?status=Pending&userId=john_doe`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Query Parameters:**
+
 - `status` (optional): Filter by status (Pending, Approved, Rejected)
 - `userId` (optional): Filter by username
 
 **Response (200):**
+
 ```json
 [
   {
@@ -498,14 +557,17 @@ Authorization: Bearer {admin_token}
 ---
 
 ### Approve/Reject Leave Request
+
 **PATCH** `/api/admin/leaves/:id`
 
 **Headers:**
+
 ```
 Authorization: Bearer {admin_token}
 ```
 
 **Request Body (Approve):**
+
 ```json
 {
   "status": "Approved"
@@ -513,6 +575,7 @@ Authorization: Bearer {admin_token}
 ```
 
 **Request Body (Reject):**
+
 ```json
 {
   "status": "Rejected",
@@ -521,6 +584,7 @@ Authorization: Bearer {admin_token}
 ```
 
 **Response (200):**
+
 ```json
 {
   "message": "Leave request approved successfully",
@@ -543,12 +607,15 @@ Authorization: Bearer {admin_token}
 ## Error Responses
 
 ### 401 Unauthorized
+
 ```json
 {
   "error": "No token provided"
 }
 ```
+
 or
+
 ```json
 {
   "error": "Invalid token"
@@ -556,6 +623,7 @@ or
 ```
 
 ### 403 Forbidden
+
 ```json
 {
   "error": "Admin access required"
@@ -563,6 +631,7 @@ or
 ```
 
 ### 404 Not Found
+
 ```json
 {
   "error": "Resource not found"
@@ -570,6 +639,7 @@ or
 ```
 
 ### 400 Bad Request
+
 ```json
 {
   "error": "Error message describing the issue"
@@ -583,15 +653,15 @@ or
 ### Setting up Axios
 
 ```javascript
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: "http://localhost:3001/api",
 });
 
 // Add token to all requests
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -604,8 +674,8 @@ export default api;
 ### Custom Hook Example (useApi)
 
 ```javascript
-import { useState } from 'react';
-import api from './api';
+import { useState } from "react";
+import api from "./api";
 
 export const useApi = () => {
   const [loading, setLoading] = useState(false);
@@ -614,13 +684,13 @@ export const useApi = () => {
   const request = async (method, url, data = null) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await api[method](url, data);
       setLoading(false);
       return response.data;
     } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred');
+      setError(err.response?.data?.error || "An error occurred");
       setLoading(false);
       throw err;
     }
@@ -638,19 +708,19 @@ const { request, loading, error } = useApi();
 
 const handleLogin = async (username, password) => {
   try {
-    const data = await request('post', '/login', { username, password });
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
+    const data = await request("post", "/login", { username, password });
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
     // Navigate to dashboard
   } catch (err) {
-    console.error('Login failed:', err);
+    console.error("Login failed:", err);
   }
 };
 
 // Mark Attendance
 const handleMarkAttendance = async () => {
   try {
-    const data = await request('post', '/attendance');
+    const data = await request("post", "/attendance");
     toast.success(data.message);
   } catch (err) {
     toast.error(error);
@@ -660,10 +730,10 @@ const handleMarkAttendance = async () => {
 // Get Leave Requests
 const fetchLeaves = async () => {
   try {
-    const leaves = await request('get', '/leaves/me');
+    const leaves = await request("get", "/leaves/me");
     setLeaves(leaves);
   } catch (err) {
-    console.error('Failed to fetch leaves:', err);
+    console.error("Failed to fetch leaves:", err);
   }
 };
 ```
@@ -676,7 +746,7 @@ const fetchLeaves = async () => {
 
 2. **Attendance Logic**: Users can only mark attendance once per day. Subsequent attempts will return an error.
 
-3. **Leave Request Restrictions**: 
+3. **Leave Request Restrictions**:
    - Users can only update/delete their own pending leave requests
    - Approved or Rejected leaves cannot be modified by users
 

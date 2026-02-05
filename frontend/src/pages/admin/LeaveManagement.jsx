@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LeaveTable from "@/components/leave/LeaveTable";
+import UserFilter from "@/components/users/UserFilter";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
@@ -21,12 +22,7 @@ const LeaveManagement = () => {
         <Link to="/admin-Dashboard">
           <Button>Go Back</Button>
         </Link>
-        <div className="flex gap-3 items-center mr-[38%]">
-          <Button>All</Button>
-          <Button>Pending</Button>
-          <Button>Approved</Button>
-          <Button>Rejected</Button>
-        </div>
+        <UserFilter />
       </div>
       <div className="mt-15">
         <LeaveTable leaves={leaves} />
