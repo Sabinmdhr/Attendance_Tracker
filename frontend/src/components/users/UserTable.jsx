@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import EditUser from "./EditUser";
+import UserInfo from "./UserInfo";
 
 const UserTable = ({ users }) => {
   return (
@@ -30,7 +30,7 @@ const UserTable = ({ users }) => {
               <TableCell>{user.name}</TableCell>
 
               <TableCell className="text-right">
-                <EditUser user={user} />
+                <UserInfo user={user} />
               </TableCell>
             </TableRow>
           ))}

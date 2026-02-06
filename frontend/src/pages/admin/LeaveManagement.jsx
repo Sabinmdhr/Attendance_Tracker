@@ -7,6 +7,7 @@ import UserFilter from "@/components/users/UserFilter";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("all");
 
   useEffect(() => {
     const fetchLeaves = async () => {
@@ -16,16 +17,26 @@ const LeaveManagement = () => {
     fetchLeaves();
   }, []);
 
+  const filteredLeaves =
+    currentFilter === "all"
+      ? leaves
+      : leaves.filter((leave) => leave.status.toLowerCase() === currentFilter);
+
   return (
     <div className="mx-18 mt-12">
-      <div className="flex justify-between ">
+      <div className="flex justify-between">
         <Link to="/admin-Dashboard">
           <Button>Go Back</Button>
         </Link>
-        <UserFilter />
+
+        <UserFilter
+          currentFilter={currentFilter}
+          setCurrentFilter={setCurrentFilter}
+        />
       </div>
+
       <div className="mt-15">
-        <LeaveTable leaves={leaves} />
+        <LeaveTable leaves={filteredLeaves} />
       </div>
     </div>
   );

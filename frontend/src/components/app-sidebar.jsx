@@ -37,8 +37,8 @@ export function AppSidebar() {
       </SidebarContent>
 
       {/* FOOTER */}
-      <SidebarFooter>
-        <p className="text-sm">Sabin</p>
+      <SidebarFooter onClick>
+        <p className="text-sm">Logout</p>
       </SidebarFooter>
     </Sidebar>
   );

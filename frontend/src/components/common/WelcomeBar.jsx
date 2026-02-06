@@ -1,18 +1,18 @@
-import React from 'react'
+import React from "react";
 
 const WelcomeBar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
- const today = new Date();
- const formattedDate = today.toLocaleDateString("en-US", {
-   weekday: "long",
-   year: "numeric",
-   month: "long",
-   day: "numeric",
- });
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <div className=" px-8 py-5 justify-between   flex items-center border-b border-gray-300 shadow-md m-5">
       <div>
-        <h1 className="text-2xl font-bold">Welcome Back</h1>
+        <h1 className="text-2xl font-bold">Welcome Back,</h1>
         <p className="text-lg">{user?.name || "Guest"}</p>
       </div>
 
@@ -21,6 +21,6 @@ const WelcomeBar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default WelcomeBar
+export default WelcomeBar;

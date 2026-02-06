@@ -1,18 +1,19 @@
-import React from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
-const UserFilter = () => {
-  const filter = ["All", "Pending", "Approved", "Rejected"];
+const UserFilter = ({ currentFilter, setCurrentFilter }) => {
+  const filters = ["all", "pending", "approved", "rejected"];
 
-  //   let currentFilter = all;
-
-  
   return (
-    <div className="flex gap-3 items-center mr-[38%]">
-      <Button>All</Button>
-      <Button>Pending</Button>
-      <Button>Approved</Button>
-      <Button>Rejected</Button>
+    <div className="flex gap-3 items-center mr-[38%] ">
+      {filters.map((filter) => (
+        <Button
+          key={filter}
+          variant={currentFilter === filter ? "default" : "outline"}
+          onClick={() => setCurrentFilter(filter)}
+        >
+          {filter.charAt(0).toUpperCase() + filter.slice(1)}
+        </Button>
+      ))}
     </div>
   );
 };

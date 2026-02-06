@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import ConfirmDialog from "./LeaveConfirmDialog";
 
-const LaveTable = ({ leaves = [] }) => {
+const LeaveTable = ({ leaves = [] }) => {
   return (
     <div>
       <Table>
@@ -50,4 +50,4 @@ const LaveTable = ({ leaves = [] }) => {
   );
 };
 
-export default LaveTable;
+export default LeaveTable;

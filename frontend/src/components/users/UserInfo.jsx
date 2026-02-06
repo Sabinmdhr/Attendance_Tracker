@@ -21,10 +21,8 @@ import api from "@/lib/api";
 import AttendanceCalendar from "../attendance/AttendanceCalendar";
 import useAttendanceStats from "@/hooks/useAttendanceStats";
 
-const EditUser = ({ user }) => {
-
-
-const {stats, loading, error} = useAttendanceStats();
+const UserInfo = ({ user }) => {
+  const { stats, loading, error } = useAttendanceStats();
   return (
     <div className="flex items-end justify-end gap-1">
       <div>
@@ -110,4 +108,4 @@ const {stats, loading, error} = useAttendanceStats();
   );
 };
 
-export default EditUser;
+export default UserInfo;
