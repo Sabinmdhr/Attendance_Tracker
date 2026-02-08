@@ -1,120 +1,177 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import AttendanceChart from '@/components/AttendanceChart';
-import { Calendar } from '@/components/ui/calendar';
-import api from '@/lib/api';
-import AttendanceCalendar from '@/components/attendance/AttendanceCalendar';
-import LeaveCard from '@/components/users/LeaveCard';
-const Dashboard = () => {
+import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import AttendanceChart from "@/components/AttendanceChart";
+import AttendanceCalendar from "@/components/attendance/AttendanceCalendar";
+import LeaveCard from "@/components/users/LeaveCard";
+import api from "@/lib/api";
 
+const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+
+  if (!user) {
+    window.location.href = "/";
+    return null;
+  }
+
+  // State
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [dates, setDates]= useState([]);
+  const [dates, setDates] = useState([]);
+  const [markAttendance, setMarkAttendance] = useState(() => {
+    // Initialize from localStorage
+ 
+  });
+  // Helpers
+  const getFormattedToday = () => new Date().toISOString().split("T")[0];
 
+  // Mark attendance as Present
+  const handleMarkAttendance = async () => {
+    try {
+      const today = getFormattedToday();
+      const newAttendance = {
+        userId: user.username,
+        date: today,
+        status: "Present",
+        timestamp: new Date().toISOString(),
+      };
 
-
-
-useEffect(() =>{
-  // const storedUser = localStorage.getItem("user");
-  // if(storedUser){
-  //   setUser (JSON.parse(storedUser));
-  // }
-
- const fetchStats = async () => {
-   try {
-     const token = localStorage.getItem("token");
-     const user = JSON.parse(localStorage.getItem("user"));
-
-     if (!token || !user) {
-       setError("User not logged in");
-       setLoading(false);
-       return;
-     }
-
-     // Call backend stats endpoint
-     const res = await api.get("/attendance/stats", {
-       headers: {
-         Authorization: `Bearer ${token}`,
-       },
-     });
-
-     setStats(res.data);
-     setLoading(false);
-   } catch (err) {
-     console.error("Error fetching stats:", err.response?.data || err.message);
-     setError("Failed to fetch attendance stats");
-     setLoading(false);
-   }
- };
-
-const fetchAttendanceData = async () => {
-  try {
-    const res = await api.get("/attendance");
-    const attendanceData = res.data || []; // make sure it's an array
-
-    const user = JSON.parse(localStorage.getItem("user"));
-console.log("API response:", res.data);
-console.log("Attendance data:", attendanceData);
-    const userDates = attendanceData
-      .filter((a) => a.userId === user.username)
-      .map((a) => {
-        const [y, m, d] = a.date.split("-");
-        return new Date(y, m - 1, d);
+      await api.post("/attendance", newAttendance, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
-    setDates(userDates);
-    console.log(userDates);
+      setDates((prev) => [...prev, new Date(today)]);
+      setMarkAttendance(true);
+      localStorage.setItem(
+        "markAttendance",
+        JSON.stringify({ date: today, value: true }),
+      );
 
-  } catch (err) {
-    console.log(err);
-  }
-};
+      alert("Attendance marked successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to mark attendance");
+    }
+  };
 
+  // Automatically mark Absent if not present by deadline
+  // const handleAbsentAutomatically = async (userDates) => {
+  //   if (!token || !user) return;
 
- fetchStats();
-fetchAttendanceData();
+  //   try {
+  //     const today = getFormattedToday();
+  //     const newAttendance = {
+  //       userId: user.username,
+  //       date: today,
+  //       status: "Absent",
+  //       timestamp: new Date().toISOString(),
+  //     };
 
-},[]);
+  //     await api.post("/attendance", newAttendance, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
 
+  //     setMarkAttendance(true);
+
+  //     console.log("User automatically marked absent");
+  //   } catch (err) {
+  //     console.error("Failed to mark absent:", err);
+  //   }
+  // };
+
+  // Initial setup
+  useEffect(() => {
+    // Fetch attendance stats
+    const fetchStats = async () => {
+      try {
+        const res = await api.get("/attendance/stats", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setStats(res.data);
+      } catch (err) {
+        console.error(
+          "Error fetching stats:",
+          err.response?.data || err.message,
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const init = async () => {
+      // Fetch attendance data
+      let userDates = [];
+      try {
+        const res = await api.get("/attendance", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const attendanceData = res.data || [];
+
+        userDates = attendanceData
+          .filter((a) => a.userId === user.username)
+          .map((a) => new Date(a.date));
+
+        setDates(userDates);
+      } catch (err) {
+        console.error("Error fetching attendance data:", err);
+      }
+
+      // Set automatic absent deadline (12:15 PM)
+      // const deadline = new Date();
+      // deadline.setHours(12, 15, 0, 0);
+      // const timeUntilDeadline = deadline - new Date();
+
+      // if (timeUntilDeadline > 0) {
+      //   const timer = setTimeout(() => {
+      //     handleAbsentAutomatically(userDates);
+      //   }, timeUntilDeadline);
+
+      //   return () => clearTimeout(timer); // cleanup
+      // } else {
+      //   handleAbsentAutomatically(userDates);
+      // }
+    };
+
+    init();
+    fetchStats();
+  }, []);
 
   if (loading) return <p>Loading attendance stats...</p>;
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
   return (
     <div>
-     
       <div className="m-5 p-5 border border-gray-300 rounded-lg shadow-md flex justify-between items-center">
         <h1>Mark Attendance</h1>
-        <Button variant="destructive">Mark Attendance</Button>
+        <Button
+          onClick={handleMarkAttendance}
+          variant="destructive"
+          disabled={markAttendance}
+        >
+          {markAttendance ? "Attendance Completed" : "Mark Attendance"}
+        </Button>
       </div>
-      <div className="flex justify-between items-center gap-5 m-5 h-fit rounded-lg">
-        <div className="">
-          <Card>
-              <CardContent>
-                <AttendanceChart
-                  present={stats?.presentDays || 0}
-                  total={stats?.totalDays || 1}
-                />
-              </CardContent>
 
-          </Card>
-        </div>
+      <div className="flex justify-between items-center gap-5 m-5 h-fit rounded-lg">
+        <Card>
+          <CardContent>
+            <AttendanceChart
+              present={stats?.presentDays || 0}
+              total={stats?.totalDays || 1}
+            />
+          </CardContent>
+        </Card>
 
         <AttendanceCalendar presentDates={dates} />
 
-        <div>
-          <LeaveCard
-            className="h-full w-full bg-amber-50"
-            totalLeaves={24}
-            usedLeaves={5}
-          />
-        </div>
+        <LeaveCard
+          className="h-full w-full bg-amber-50"
+          totalLeaves={24}
+          usedLeaves={5}
+        />
       </div>
     </div>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

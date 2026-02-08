@@ -8,8 +8,17 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-
+import { Link } from "react-router-dom";
 export function AppSidebar() {
+
+   const logout = () => {
+     localStorage.removeItem("token");
+     localStorage.removeItem("user");
+     localStorage.removeItem("markAttendance");
+
+     // Optional: redirect to login page
+     window.location.href = "/";
+   };
   return (
     <Sidebar>
       {/* HEADER */}
@@ -22,15 +31,17 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>Dashboard</SidebarMenuButton>
+              <SidebarMenuButton>
+                {" "}
+                <Link to="/user-dashboard">Dashboard</Link>{" "}
+              </SidebarMenuButton>
             </SidebarMenuItem>
 
             <SidebarMenuItem>
-              <SidebarMenuButton>Students</SidebarMenuButton>
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton>Login</SidebarMenuButton>
+              <SidebarMenuButton>
+                {" "}
+                <Link to="/leaves">Leave Requests</Link>{" "}
+              </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
@@ -38,7 +49,9 @@ export function AppSidebar() {
 
       {/* FOOTER */}
       <SidebarFooter>
-        <p className="text-sm">Sabin</p>
+        <SidebarMenuButton onClick= {logout}>
+          Logout
+        </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   );
