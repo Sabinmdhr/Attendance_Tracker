@@ -1,12 +1,11 @@
 {
   "users": [
     {
-      "id": "1",
       "username": "admin",
-      "password": "admin_",
-      "role": "admin",
       "name": "Administrator",
-      "email": "admin@example.com"
+      "email": "admin@example.com",
+      "role": "admin",
+      "id": "1"
     },
     {
       "id": "2",
@@ -24,22 +23,45 @@
       "name": "Jane Smith",
       "email": "jane@example.com"
     },
-
     {
       "id": "4",
       "username": "bob_wilson",
       "password": "password123",
-      "role": "user",
+      "role": "admin",
       "name": "Bob Wilson",
       "email": "bob@example.com"
     },
     {
-      "id": "5",
-      "username": "sushant_basnet",
-      "password": "sushant",
-      "role": "admin",
+      "username": "sushant",
+      "password": "password123",
       "name": "Sushant Basnet",
-      "email": "sushant@example.com"
+      "email": "sushant@example.com",
+      "role": "admin",
+      "id": "5"
+    },
+    {
+      "username": "sushant_basnet",
+      "password": "password123",
+      "name": "sushant",
+      "email": "showshant716@gmail.com",
+      "role": "admin",
+      "id": "kqu7d6I"
+    },
+    {
+      "username": "Sabin_Manandhar",
+      "name": "sabin manandhar",
+      "email": "sabin@example.com",
+      "role": "user",
+      "password": "sabs",
+      "id": "_mEffG5"
+    },
+    {
+      "username": "Neymar",
+      "name": "Neymarr",
+      "email": "www@gmail.com",
+      "role": "admin",
+      "password": "123",
+      "id": "uZZTR0N"
     }
   ],
   "attendance": [
@@ -138,6 +160,18 @@
     {
       "id": "3",
       "userId": "bob_wilson",
+      "startDate": "2026-02-05",
+      "endDate": "2026-02-05",
+      "reason": "Personal work",
+      "status": "Rejected",
+      "createdAt": "2026-01-22T11:15:00Z",
+      "reviewedBy": "admin",
+      "reviewedAt": "2026-01-23T10:30:00Z",
+      "rejectionReason": "Insufficient notice period"
+    },
+    {
+      "id": "4",
+      "userId": "sushant_basnet",
       "startDate": "2026-02-05",
       "endDate": "2026-02-05",
       "reason": "Personal work",

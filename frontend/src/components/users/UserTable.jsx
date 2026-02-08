@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import UserInfo from "./UserInfo";
 
-const UserTable = ({ users }) => {
+const UserTable = ({ users, onUserUpdated }) => {
   return (
     <div>
       <Table>
@@ -27,10 +27,13 @@ const UserTable = ({ users }) => {
           {users.map((user, index) => (
             <TableRow key={user.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.username}</TableCell>
 
               <TableCell className="text-right">
-                <UserInfo user={user} />
+                <UserInfo
+                  user={user}
+                  onUserUpdated={onUserUpdated}
+                />
               </TableCell>
             </TableRow>
           ))}

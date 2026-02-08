@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/table";
 import ConfirmDialog from "./LeaveConfirmDialog";
 
-const LeaveTable = ({ leaves = [] }) => {
+// leaves = []
+
+const LeaveTable = ({ leaves }) => {
   return (
     <div>
       <Table>

@@ -10,11 +10,12 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [searchVal, setSearchVal] = useState("");
 
+  const fetchUsers = async () => {
+    const res = await axios.get("http://localhost:3001/api/users");
+    setUsers(res.data);
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get("http://localhost:3001/api/users");
-      setUsers(res.data);
-    };
     fetchUsers();
   }, []);
 
@@ -28,7 +29,7 @@ const Dashboard = () => {
     <div>
       <div className="mx-18 mt-12">
         <div className="flex gap-4.5 justify-between items-center m-5">
-          <UserForm />
+          <UserForm onUserCreated={fetchUsers} />
 
           <SearchUser
             searchVal={searchVal}
@@ -40,7 +41,10 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <UserTable users={filteredUsers} />
+        <UserTable
+          users={filteredUsers}
+          onUserUpdated={fetchUsers}
+        />
       </div>
     </div>
   );

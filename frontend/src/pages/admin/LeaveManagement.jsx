@@ -21,6 +21,7 @@ const LeaveManagement = () => {
     currentFilter === "all"
       ? leaves
       : leaves.filter((leave) => leave.status.toLowerCase() === currentFilter);
+  // console.log(currentFilter);
 
   return (
     <div className="mx-18 mt-12">
@@ -28,7 +29,6 @@ const LeaveManagement = () => {
         <Link to="/admin-Dashboard">
           <Button>Go Back</Button>
         </Link>
-
         <UserFilter
           currentFilter={currentFilter}
           setCurrentFilter={setCurrentFilter}

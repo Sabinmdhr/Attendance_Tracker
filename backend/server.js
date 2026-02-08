@@ -21,6 +21,7 @@ server.use(cors(corsOptions));
 // Custom middleware for authentication and business logic
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
+server.use(cors());
 
 // Swagger UI setup
 server.use(

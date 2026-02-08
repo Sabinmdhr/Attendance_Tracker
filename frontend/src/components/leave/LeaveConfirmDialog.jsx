@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-const ConfirmDialog = () => {
+const ConfirmDialog = ({ leave }) => {
   return (
     <div className="flex justify-end gap-2">
       <AlertDialog>
