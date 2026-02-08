@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import { Card } from '../ui/card';
 
 const WelcomeBar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -10,16 +11,18 @@ const WelcomeBar = () => {
     day: "numeric",
   });
   return (
-    <div className=" px-8 py-5 justify-between   flex items-center border-b border-gray-300 shadow-md m-5">
-      <div>
-        <h1 className="text-2xl font-bold">Welcome Back,</h1>
-        <p className="text-lg">{user?.name || "Guest"}</p>
-      </div>
+    <Card className='m-5'>
+      <div className=" px-5 py-0 justify-between   flex items-center ">
+        <div>
+          <h1 className="text-2xl font-bold">Welcome Back</h1>
+          <p className="text-lg">{user?.name || "Guest"}</p>
+        </div>
 
-      <div className="text-lg">
-        <p>{formattedDate}</p>
+        <div className="text-lg">
+          <p>{formattedDate}</p>
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

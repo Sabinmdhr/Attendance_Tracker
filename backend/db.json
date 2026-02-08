@@ -8,6 +8,30 @@
       "id": "1"
     },
     {
+      "id": "6",
+      "username": "sabin1",
+      "password": "sabin1",
+      "role": "user",
+      "name": "Administrator",
+      "email": "admin@example.com"
+    },
+    {
+      "id": "7",
+      "username": "sabin2",
+      "password": "sabin2",
+      "role": "user",
+      "name": "sabin2",
+      "email": "admin@example.com"
+    },
+    {
+      "id": "8",
+      "username": "sabbin",
+      "password": "sabbin",
+      "role": "user",
+      "name": "sabbin",
+      "email": "admin@example.com"
+    },
+    {
       "id": "2",
       "username": "john_doe",
       "password": "password123",
@@ -76,7 +100,7 @@
       "id": "1",
       "userId": "john_doe",
       "date": "2026-01-25",
-      "status": "Present",
+      "status": "Absent",
       "timestamp": "2026-01-25T09:30:00Z"
     },
     {
@@ -129,11 +153,88 @@
       "timestamp": "2026-02-04T10:21:33.570Z"
     },
     {
-      "id": "7",
-      "userId": "sushant_basnet",
-      "date": "2026-02-04",
+      "id": "1770359945516",
+      "userId": "john_doe",
+      "date": "2026-02-06",
       "status": "Present",
-      "timestamp": "2026-02-04T10:21:33.570Z"
+      "timestamp": "2026-02-06T06:39:05.516Z"
+    },
+    {
+      "id": "1770535794130",
+      "userId": "sabin4",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T07:29:54.130Z"
+    },
+    {
+      "id": "1770535805219",
+      "userId": "sabin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T07:30:05.219Z"
+    },
+    {
+      "id": "1770539482867",
+      "userId": "sabin1",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:31:22.867Z"
+    },
+    {
+      "id": "1770539525905",
+      "userId": "sabin5",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:32:05.905Z"
+    },
+    {
+      "id": "1770539715188",
+      "userId": "sabin6",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:35:15.188Z"
+    },
+    {
+      "id": "1770539739301",
+      "userId": "sabin9",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:35:39.301Z"
+    },
+    {
+      "id": "1770539804665",
+      "userId": "sabinn",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:36:44.665Z"
+    },
+    {
+      "id": "1770540352971",
+      "userId": "sabinnn",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:45:52.971Z"
+    },
+    {
+      "id": "1770540395126",
+      "userId": "sabiin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:46:35.126Z"
+    },
+    {
+      "id": "1770540580797",
+      "userId": "sabiiin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:49:40.797Z"
+    },
+    {
+      "id": "1770541409803",
+      "userId": "sabbin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:03:29.803Z"
     }
   ],
   "leaves": [
