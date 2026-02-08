@@ -11,7 +11,7 @@ export default function Layout() {
 
         <main style={{ flex: 1, padding: "16px" }}>
           <SidebarTrigger />
-          <WelcomeBar/>
+          <WelcomeBar />
           <Outlet />
         </main>
       </div>

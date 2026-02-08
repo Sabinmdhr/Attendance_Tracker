@@ -3,13 +3,13 @@ import { Card } from '../ui/card';
 
 const WelcomeBar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
- const today = new Date();
- const formattedDate = today.toLocaleDateString("en-US", {
-   weekday: "long",
-   year: "numeric",
-   month: "long",
-   day: "numeric",
- });
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <Card className='m-5'>
       <div className=" px-5 py-0 justify-between   flex items-center ">
@@ -24,6 +24,6 @@ const WelcomeBar = () => {
       </div>
     </Card>
   );
-}
+};
 
-export default WelcomeBar
+export default WelcomeBar;
