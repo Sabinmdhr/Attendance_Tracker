@@ -42,7 +42,7 @@ const LeaveTable = ({ leaves }) => {
               <TableCell>{leave.reason}</TableCell>
 
               <TableCell>
-                <ConfirmDialog leave={leave} />
+                <ConfirmDialog leave={leave} id= {leave.id} />
               </TableCell>
             </TableRow>
           ))}

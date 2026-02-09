@@ -264,7 +264,7 @@
       "startDate": "2026-02-10",
       "endDate": "2026-02-12",
       "reason": "Medical appointment and recovery",
-      "status": "Pending",
+      "status": "Approved",
       "createdAt": "2026-01-20T10:00:00Z"
     },
     {
@@ -308,8 +308,9 @@
       "startDate": "2026-02-23",
       "endDate": "2026-02-23",
       "reason": "Trekkiing with family",
-      "status": "Pending",
-      "createdAt": "2026-02-02T07:34:28.608Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-02T07:34:28.608Z",
+      "rejectionReason": "you cant leave "
     },
     {
       "id": "1770615354194",
@@ -317,8 +318,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-11",
       "reason": "For Exam preparation",
-      "status": "Pending",
-      "createdAt": "2026-02-09T05:35:54.194Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-09T05:35:54.194Z",
+      "rejectionReason": ""
     },
     {
       "id": "1770618787580",
@@ -326,17 +328,57 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-13",
       "reason": "vvv",
-      "status": "Pending",
-      "createdAt": "2026-02-09T06:33:07.580Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-09T06:33:07.580Z",
+      "rejectionReason": "wwwwwww"
     },
     {
       "id": "1770619330795",
       "userId": "john_doe",
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
-      "reason": "skyinggg",
-      "status": "Pending",
+      "reason": "skyinggg\n",
+      "status": "Approved",
       "createdAt": "2026-02-09T06:42:10.795Z"
+    },
+    {
+      "id": "1770620741923",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "skyinggg\n",
+      "status": "Approved",
+      "createdAt": "2026-02-09T07:05:41.923Z"
+    },
+    {
+      "id": "1770620801551",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "skyinggg\n",
+      "status": "Rejected",
+      "createdAt": "2026-02-09T07:06:41.551Z",
+      "rejectionReason": ""
+    },
+    {
+      "id": "1770620843776",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "skyinggg\n",
+      "status": "Rejected",
+      "createdAt": "2026-02-09T07:07:23.776Z",
+      "rejectionReason": ""
+    },
+    {
+      "id": "1770622472550",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "khana klhana januh parcha",
+      "status": "Rejected",
+      "createdAt": "2026-02-09T07:34:32.550Z",
+      "rejectionReason": "cccc"
     }
   ]
 }
