@@ -18,10 +18,10 @@ const corsOptions = {
 
 server.use(cors(corsOptions));
 
+server.options("*", cors(corsOptions));
 // Custom middleware for authentication and business logic
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
-server.use(cors());
 
 // Swagger UI setup
 server.use(
@@ -344,6 +344,7 @@ server.put("/api/admin/users/:id", authenticate, (req, res) => {
 
   if (username) updates.username = username;
   if (password) updates.password = password;
+
   if (role) updates.role = role;
   if (name !== undefined) updates.name = name;
   if (email !== undefined) updates.email = email;

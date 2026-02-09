@@ -82,7 +82,10 @@ export function LoginForm({ className, role = "user", ...props }) {
 
         {/* Submit */}
         <Field>
-          <Button type="submit" className="cursor-pointer">
+          <Button
+            type="submit"
+            className="cursor-pointer"
+          >
             Login as {role}
           </Button>
         </Field>
@@ -91,7 +94,10 @@ export function LoginForm({ className, role = "user", ...props }) {
         <Field>
           <FieldDescription className="text-center">
             Don&apos;t have an account?{" "}
-            <a href="#" className="underline underline-offset-4">
+            <a
+              href="#"
+              className="underline underline-offset-4"
+            >
               Sign up
             </a>
           </FieldDescription>

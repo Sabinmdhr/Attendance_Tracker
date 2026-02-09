@@ -9,49 +9,46 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
+
 export function AppSidebar() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isAdmin = user?.role === "admin";
 
-   const logout = () => {
-     localStorage.removeItem("token");
-     localStorage.removeItem("user");
-     localStorage.removeItem("markAttendance");
+  const dashboardRoute = isAdmin ? "/admin-dashboard" : "/user-dashboard";
 
-     // Optional: redirect to login page
-     window.location.href = "/";
-   };
+  const leaveRoute = isAdmin ? "/leaveManagement" : "/leaves";
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
   return (
     <Sidebar>
-      {/* HEADER */}
       <SidebarHeader>
         <h2 className="text-lg font-bold">Attendance App</h2>
       </SidebarHeader>
 
-      {/* CONTENT */}
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton>
-                {" "}
-                <Link to="/user-dashboard">Dashboard</Link>{" "}
+                <Link to={dashboardRoute}>Dashboard</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
             <SidebarMenuItem>
               <SidebarMenuButton>
-                {" "}
-                <Link to="/leaves">Leave Requests</Link>{" "}
+                <Link to={leaveRoute}>Leave Requests</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
 
-      {/* FOOTER */}
       <SidebarFooter>
-        <SidebarMenuButton onClick= {logout}>
-          Logout
-        </SidebarMenuButton>
+        <SidebarMenuButton onClick={logout}>Logout</SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   );

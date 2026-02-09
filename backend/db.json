@@ -8,30 +8,6 @@
       "id": "1"
     },
     {
-      "id": "6",
-      "username": "sabin1",
-      "password": "sabin1",
-      "role": "user",
-      "name": "Administrator",
-      "email": "admin@example.com"
-    },
-    {
-      "id": "7",
-      "username": "sabin2",
-      "password": "sabin2",
-      "role": "user",
-      "name": "sabin2",
-      "email": "admin@example.com"
-    },
-    {
-      "id": "8",
-      "username": "sabbin",
-      "password": "sabbin",
-      "role": "user",
-      "name": "sabbin",
-      "email": "admin@example.com"
-    },
-    {
       "id": "2",
       "username": "john_doe",
       "password": "password123",
@@ -65,10 +41,10 @@
     },
     {
       "username": "sushant_basnet",
-      "password": "password123",
       "name": "sushant",
       "email": "showshant716@gmail.com",
       "role": "admin",
+      "password": "sssss",
       "id": "kqu7d6I"
     },
     {
@@ -76,7 +52,6 @@
       "name": "sabin manandhar",
       "email": "sabin@example.com",
       "role": "user",
-      "password": "sabs",
       "id": "_mEffG5"
     },
     {
@@ -84,7 +59,6 @@
       "name": "Neymarr",
       "email": "www@gmail.com",
       "role": "admin",
-      "password": "123",
       "id": "uZZTR0N"
     },
     {
@@ -108,7 +82,7 @@
       "id": "1",
       "userId": "john_doe",
       "date": "2026-01-25",
-      "status": "Absent",
+      "status": "Present",
       "timestamp": "2026-01-25T09:30:00Z"
     },
     {
@@ -161,15 +135,15 @@
       "timestamp": "2026-02-04T10:21:33.570Z"
     },
     {
-      "id": "1770359945516",
-      "userId": "john_doe",
-      "date": "2026-02-06",
+      "id": "7",
+      "userId": "sushant_basnet",
+      "date": "2026-02-04",
       "status": "Present",
-      "timestamp": "2026-02-06T06:39:05.516Z"
+      "timestamp": "2026-02-04T10:21:33.570Z"
     },
     {
-      "id": "1770535794130",
-      "userId": "sabin4",
+      "id": "1770543077284",
+      "userId": "john_doe",
       "date": "2026-02-08",
       "status": "Present",
       "timestamp": "2026-02-08T07:29:54.130Z"

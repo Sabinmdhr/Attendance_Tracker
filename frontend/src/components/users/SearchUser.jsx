@@ -16,7 +16,7 @@ const SearchUser = ({ searchVal, setSearchVal }) => {
           value={searchVal}
           onChange={(e) => setSearchVal(e.target.value)}
         />
-        <Button>Search</Button>
+        <Button type="button">Search</Button>
       </Field>
     </div>
   );
