@@ -49,7 +49,7 @@ const UserForm = ({ onUserCreated }) => {
       // console.log("POST response:", res);
 
       onUserCreated(); // refresh table
-      setOpen(false);
+      setOpen(false); 
       setUsername("");
       setPassword("");
       setName("");
