@@ -86,6 +86,14 @@
       "role": "admin",
       "password": "123",
       "id": "uZZTR0N"
+    },
+    {
+      "username": "sushaannnt",
+      "name": "sushantttt baasmet",
+      "email": "ashdgashdg@ajh",
+      "role": "user",
+      "password": "123456",
+      "id": "UhaCC18"
     }
   ],
   "attendance": [
@@ -235,6 +243,27 @@
       "date": "2026-02-08",
       "status": "Present",
       "timestamp": "2026-02-08T09:03:29.803Z"
+    },
+    {
+      "id": "1770542451581",
+      "userId": "sushaannnt",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:20:51.581Z"
+    },
+    {
+      "id": "1770543423024",
+      "userId": "john_doe",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:37:03.024Z"
+    },
+    {
+      "id": "1770610487351",
+      "userId": "jane_smith",
+      "date": "2026-02-09",
+      "status": "Present",
+      "timestamp": "2026-02-09T04:14:47.351Z"
     }
   ],
   "leaves": [
@@ -290,6 +319,33 @@
       "reason": "Trekkiing with family",
       "status": "Pending",
       "createdAt": "2026-02-02T07:34:28.608Z"
+    },
+    {
+      "id": "1770615354194",
+      "userId": "jane_smith",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-11",
+      "reason": "For Exam preparation",
+      "status": "Pending",
+      "createdAt": "2026-02-09T05:35:54.194Z"
+    },
+    {
+      "id": "1770618787580",
+      "userId": "jane_smith",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-13",
+      "reason": "vvv",
+      "status": "Pending",
+      "createdAt": "2026-02-09T06:33:07.580Z"
+    },
+    {
+      "id": "1770619330795",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "skyinggg\n",
+      "status": "Pending",
+      "createdAt": "2026-02-09T06:42:10.795Z"
     }
   ]
 }

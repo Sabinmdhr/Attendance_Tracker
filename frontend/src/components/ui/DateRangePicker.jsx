@@ -11,11 +11,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DateRangePicker() {
-  const [date, setDate] = React.useState({
-    from: null,
-    to: null,
-  });
+export function DateRangePicker({date, setDate}) {
+
 
   return (
     <div className="grid gap-2">
