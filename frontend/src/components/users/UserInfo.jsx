@@ -42,7 +42,7 @@ const UserInfo = ({ user, onUserUpdated }) => {
     setName(user.name || "");
     setEmail(user.email || "");
     setRole(user.role || "user");
-    setPassword("" || password);
+    setPassword("");
     setIsEditOpen(true);
   };
 
