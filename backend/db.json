@@ -5,6 +5,7 @@
       "name": "Administrator",
       "email": "admin@example.com",
       "role": "admin",
+      "password": "admin",
       "id": "1"
     },
     {
@@ -16,12 +17,12 @@
       "email": "john@example.com"
     },
     {
-      "id": "3",
       "username": "jane_smith",
-      "password": "password123",
-      "role": "user",
       "name": "Jane Smith",
-      "email": "jane@example.com"
+      "email": "jane@example.com",
+      "role": "user",
+      "password": "password1234",
+      "id": "3"
     },
     {
       "id": "4",
@@ -44,7 +45,6 @@
       "name": "sushant",
       "email": "showshant716@gmail.com",
       "role": "admin",
-      "password": "sssss",
       "id": "kqu7d6I"
     },
     {
@@ -59,15 +59,32 @@
       "name": "Neymarr",
       "email": "www@gmail.com",
       "role": "admin",
+      "password": "Neymar",
       "id": "uZZTR0N"
     },
     {
-      "username": "sushaannnt",
-      "name": "sushantttt baasmet",
-      "email": "ashdgashdg@ajh",
+      "username": "sushant",
+      "name": "showshant",
+      "email": "wow@gmail.com",
       "role": "user",
-      "password": "123456",
+      "password": "sushant",
       "id": "UhaCC18"
+    },
+    {
+      "username": "Damn",
+      "password": "password123",
+      "name": "damn",
+      "email": "damn@gmail.com",
+      "role": "user",
+      "id": "l0aCqWx"
+    },
+    {
+      "username": "Dikshant_Adhikari",
+      "name": "Dikshant Adhikari",
+      "email": "Dikshant@gmail.com",
+      "role": "user",
+      "password": "password123",
+      "id": "QqVTU96"
     }
   ],
   "attendance": [
@@ -317,7 +334,7 @@
       "userId": "john_doe",
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
-      "reason": "skyinggg\n",
+      "reason": "skyinggg",
       "status": "Pending",
       "createdAt": "2026-02-09T06:42:10.795Z"
     }
