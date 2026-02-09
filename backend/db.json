@@ -62,18 +62,12 @@
       "id": "uZZTR0N"
     },
     {
-      "username": "Daviddd Beckham",
-      "name": "David Beckham",
-      "email": "David@123.com",
+      "username": "sushaannnt",
+      "name": "sushantttt baasmet",
+      "email": "ashdgashdg@ajh",
       "role": "user",
-      "id": "Xv2bf6m"
-    },
-    {
-      "username": "adminn",
-      "name": "Admin Thapa",
-      "email": "admin@example.com",
-      "role": "admin",
-      "id": "8fYnsPF"
+      "password": "123456",
+      "id": "UhaCC18"
     }
   ],
   "attendance": [
@@ -152,7 +146,98 @@
       "userId": "john_doe",
       "date": "2026-02-08",
       "status": "Present",
-      "timestamp": "2026-02-08T09:31:17.284Z"
+      "timestamp": "2026-02-08T07:29:54.130Z"
+    },
+    {
+      "id": "1770535805219",
+      "userId": "sabin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T07:30:05.219Z"
+    },
+    {
+      "id": "1770539482867",
+      "userId": "sabin1",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:31:22.867Z"
+    },
+    {
+      "id": "1770539525905",
+      "userId": "sabin5",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:32:05.905Z"
+    },
+    {
+      "id": "1770539715188",
+      "userId": "sabin6",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:35:15.188Z"
+    },
+    {
+      "id": "1770539739301",
+      "userId": "sabin9",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:35:39.301Z"
+    },
+    {
+      "id": "1770539804665",
+      "userId": "sabinn",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:36:44.665Z"
+    },
+    {
+      "id": "1770540352971",
+      "userId": "sabinnn",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:45:52.971Z"
+    },
+    {
+      "id": "1770540395126",
+      "userId": "sabiin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:46:35.126Z"
+    },
+    {
+      "id": "1770540580797",
+      "userId": "sabiiin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T08:49:40.797Z"
+    },
+    {
+      "id": "1770541409803",
+      "userId": "sabbin",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:03:29.803Z"
+    },
+    {
+      "id": "1770542451581",
+      "userId": "sushaannnt",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:20:51.581Z"
+    },
+    {
+      "id": "1770543423024",
+      "userId": "john_doe",
+      "date": "2026-02-08",
+      "status": "Present",
+      "timestamp": "2026-02-08T09:37:03.024Z"
+    },
+    {
+      "id": "1770610487351",
+      "userId": "jane_smith",
+      "date": "2026-02-09",
+      "status": "Present",
+      "timestamp": "2026-02-09T04:14:47.351Z"
     }
   ],
   "leaves": [
@@ -208,6 +293,33 @@
       "reason": "Trekkiing with family",
       "status": "Pending",
       "createdAt": "2026-02-02T07:34:28.608Z"
+    },
+    {
+      "id": "1770615354194",
+      "userId": "jane_smith",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-11",
+      "reason": "For Exam preparation",
+      "status": "Pending",
+      "createdAt": "2026-02-09T05:35:54.194Z"
+    },
+    {
+      "id": "1770618787580",
+      "userId": "jane_smith",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-13",
+      "reason": "vvv",
+      "status": "Pending",
+      "createdAt": "2026-02-09T06:33:07.580Z"
+    },
+    {
+      "id": "1770619330795",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "skyinggg\n",
+      "status": "Pending",
+      "createdAt": "2026-02-09T06:42:10.795Z"
     }
   ]
 }

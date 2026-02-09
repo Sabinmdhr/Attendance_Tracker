@@ -21,7 +21,6 @@ const Dashboard = () => {
   const [dates, setDates] = useState([]);
   const [markAttendance, setMarkAttendance] = useState(() => {
     // Initialize from localStorage
- 
   });
   // Helpers
   const getFormattedToday = () => new Date().toISOString().split("T")[0];
