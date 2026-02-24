@@ -291,6 +291,20 @@
       "date": "2026-02-24",
       "status": "Present",
       "timestamp": "2026-02-24T04:59:32.218Z"
+    },
+    {
+      "id": "1771917539466",
+      "userId": "sabin",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T07:18:59.466Z"
+    },
+    {
+      "id": "1771917689516",
+      "userId": "jane_smith",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T07:21:29.516Z"
     }
   ],
   "leaves": [
@@ -438,6 +452,16 @@
       "status": "Rejected",
       "createdAt": "2026-02-24T05:00:29.741Z",
       "rejectionReason": "pardaina naja"
+    },
+    {
+      "id": "1771918609293",
+      "userId": "jane_smith",
+      "startDate": "2026-Feb-18",
+      "endDate": "2026-Feb-26",
+      "reason": "Final Board Exam",
+      "status": "Rejected",
+      "createdAt": "2026-02-24T07:36:49.293Z",
+      "rejectionReason": ""
     }
   ]
 }

@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import LeaveTable from "@/components/leave/LeaveTable";
 import UserFilter from "@/components/users/UserFilter";
+import { set } from "date-fns";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("all");
+  const [userRole , setUserRole] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const fetchLeaves = async () => {
@@ -36,7 +39,7 @@ const LeaveManagement = () => {
       </div>
 
       <div className="mt-15">
-        <LeaveTable leaves={filteredLeaves} />
+        <LeaveTable leaves={filteredLeaves} userRole={user.role}/>
       </div>
     </div>
   );
