@@ -68,7 +68,7 @@
       "role": "admin",
       "password": "Neymar",
       "id": "uZZTR0N",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "sushant",
@@ -113,7 +113,7 @@
       "role": "user",
       "password": "password",
       "id": "Ud15BLu",
-      "isBlocked": false
+      "isBlocked": true
     }
   ],
   "attendance": [
@@ -291,6 +291,13 @@
       "date": "2026-02-24",
       "status": "Present",
       "timestamp": "2026-02-24T04:59:32.218Z"
+    },
+    {
+      "id": "1771917633459",
+      "userId": "john_doe",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T07:20:33.459Z"
     }
   ],
   "leaves": [
@@ -301,8 +308,7 @@
       "endDate": "2026-02-12",
       "reason": "Medical appointment and recovery",
       "status": "Approved",
-      "createdAt": "2026-01-20T10:00:00Z",
-      "rejectionReason": "asdasd"
+      "createdAt": "2026-01-20T10:00:00Z"
     },
     {
       "id": "2",
@@ -438,6 +444,15 @@
       "status": "Rejected",
       "createdAt": "2026-02-24T05:00:29.741Z",
       "rejectionReason": "pardaina naja"
+    },
+    {
+      "id": "1771918664294",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-22",
+      "endDate": "2026-Feb-23",
+      "reason": "ssss",
+      "status": "Pending",
+      "createdAt": "2026-02-24T07:37:44.301Z"
     }
   ]
 }

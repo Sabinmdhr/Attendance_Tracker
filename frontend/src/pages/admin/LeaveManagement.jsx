@@ -26,7 +26,7 @@ const LeaveManagement = () => {
   return (
     <div className="mx-18 mt-12">
       <div className="flex justify-between">
-        <Link to="/admin-Dashboard">
+        <Link to="/admin-dashboard">
           <Button>Go Back</Button>
         </Link>
         <UserFilter
