@@ -84,7 +84,9 @@ server.post("/api/login", (req, res) => {
   if (!user || user.password !== password) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
-
+  if (user.isBlocked === true) {
+    return res.status(403).json({ error: "Your account has been blocked" });
+  }
   const token = generateToken(user);
 
   res.json({
