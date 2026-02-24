@@ -16,42 +16,51 @@ import { Button } from "@/components/ui/button";
 import api from "@/lib/api";
 
 const ConfirmDialog = ({ leave, id }) => {
+  const [rejectReason, setRejectReason] = useState("");
 
-const [rejectReason, setRejectReason]= useState('')
+  const token = localStorage.getItem("token");
 
+  const status = leave.status.toLowerCase();
+  const isApproved = status === "approved";
+  const isRejected = status === "rejected";
+  const isPending = status === "pending";
 
-const user = JSON.parse(localStorage.getItem("user"));
-const token = localStorage.getItem("token")
-const handleAccept = async () =>{
-const response = await api.patch(
-  `/leaves/${id}`,
-  { status: "Approved" },
-  { headers: { Authorization: `Bearer ${token}` } },
-);
+  const handleAccept = async () => {
+    if (!isPending) return;
 
+    await api.patch(
+      `/leaves/${id}`,
+      { status: "Approved" },
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+  };
 
-}
+  const handleReject = async () => {
+    if (!isPending) return;
 
+    await api.patch(
+      `/leaves/${id}`,
+      { status: "Rejected", rejectionReason: rejectReason },
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
 
-const handleReject = async () => {
-  await api.patch(
-    `/leaves/${id}`,
-    { status: "Rejected", rejectionReason : rejectReason },
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    },
+    setRejectReason("");
+  };
 
-  );
-setRejectReason('')
-};
   return (
     <div className="flex justify-end gap-2">
+      {/* ACCEPT */}
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            disabled={!isPending}
+            title={isApproved ? "Already approved" : ""}
+          >
             <CircleCheck />
           </Button>
         </AlertDialogTrigger>
+
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Accept Leave Request?</AlertDialogTitle>
@@ -61,38 +70,49 @@ setRejectReason('')
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleAccept}>
+            <AlertDialogAction
+              onClick={handleAccept}
+              disabled={!isPending}
+            >
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
 
+      {/* REJECT */}
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            disabled={!isPending}
+            title={isRejected ? "Already rejected" : ""}
+          >
             <X />
           </Button>
         </AlertDialogTrigger>
+
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Reject Leave Request?</AlertDialogTitle>
             <AlertDialogDescription>
               This action will reject the leave request for the user.
             </AlertDialogDescription>
 
             <textarea
               className="mt-2 resize-none border-2 p-3 w-full"
-              name="message"
-              id="message"
               value={rejectReason}
               onChange={(e) => setRejectReason(e.target.value)}
               placeholder="Write your reason for rejection."
-            ></textarea>
+            />
           </AlertDialogHeader>
+
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleReject}>
+            <AlertDialogAction
+              onClick={handleReject}
+              disabled={!isPending}
+            >
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>

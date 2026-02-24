@@ -12,7 +12,8 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, PencilLine } from "lucide-react";
+import { Eye, PencilLine, UserLock, UserMinus } from "lucide-react";
+
 import {
   Select,
   SelectContent,
@@ -25,7 +26,17 @@ import AttendanceCalendar from "../attendance/AttendanceCalendar";
 import useAttendanceStats from "@/hooks/useAttendanceStats";
 import { useState } from "react";
 import axios from "axios";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 const UserInfo = ({ user, onUserUpdated }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -66,13 +77,29 @@ const UserInfo = ({ user, onUserUpdated }) => {
       setLoading(false);
     }
   };
+  const handleUser = async () => {
+    try {
+      await axios.patch(`http://localhost:3001/api/users/${user.id}`, {
+        isBlocked: !user.isBlocked,
+      });
 
+      onUserUpdated();
+    } catch (err) {
+      console.error("Error updating user status:", err);
+      alert("Failed to update user status.");
+    }
+  };
+
+  const isBlocked = user.isBlocked;
   return (
     <div className="flex items-end justify-end gap-1">
       {/* View Attendance Dialog */}
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            disabled={isBlocked}
+          >
             <Eye />
           </Button>
         </DialogTrigger>
@@ -114,6 +141,7 @@ const UserInfo = ({ user, onUserUpdated }) => {
           <Button
             variant="outline"
             onClick={openEditDialog}
+            disabled={isBlocked}
           >
             <PencilLine />
           </Button>
@@ -208,6 +236,34 @@ const UserInfo = ({ user, onUserUpdated }) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/*Block User */}
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            variant={isBlocked ? "destructive" : "outline"}
+            // disabled={isBlocked}
+          >
+            {isBlocked ? <UserMinus /> : <UserLock />}
+          </Button>
+        </AlertDialogTrigger>
+
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {isBlocked ? "Unblock User?" : "Block User?"}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This action will {isBlocked ? "unblock" : "block"} the user:{" "}
+              <b>{user.username}.</b>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleUser}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
