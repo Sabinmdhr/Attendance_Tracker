@@ -68,6 +68,14 @@
       "role": "user",
       "password": "123456",
       "id": "UhaCC18"
+    },
+    {
+      "username": "sabin",
+      "password": "sabin",
+      "name": "Sabin Manandhar",
+      "email": "sabinsss@gmail.com",
+      "role": "user",
+      "id": "Pd_iduL"
     }
   ],
   "attendance": [
@@ -238,6 +246,48 @@
       "date": "2026-02-09",
       "status": "Present",
       "timestamp": "2026-02-09T04:14:47.351Z"
+    },
+    {
+      "id": "1770630821678",
+      "userId": "john_doe",
+      "date": "2026-02-09",
+      "status": "Present",
+      "timestamp": "2026-02-09T09:53:41.678Z"
+    },
+    {
+      "id": "1771560904720",
+      "userId": "john_doe",
+      "date": "2026-02-20",
+      "status": "Present",
+      "timestamp": "2026-02-20T04:15:04.720Z"
+    },
+    {
+      "id": "1771827329352",
+      "userId": "john_doe",
+      "date": "2026-02-23",
+      "status": "Present",
+      "timestamp": "2026-02-23T06:15:29.352Z"
+    },
+    {
+      "id": "1771911257497",
+      "userId": "john_doe",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T05:34:17.497Z"
+    },
+    {
+      "id": "1771913059303",
+      "userId": "jane_smith",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T06:04:19.304Z"
+    },
+    {
+      "id": "1771915530435",
+      "userId": "sabin",
+      "date": "2026-02-24",
+      "status": "Present",
+      "timestamp": "2026-02-24T06:45:30.435Z"
     }
   ],
   "leaves": [
@@ -248,7 +298,8 @@
       "endDate": "2026-02-12",
       "reason": "Medical appointment and recovery",
       "status": "Approved",
-      "createdAt": "2026-01-20T10:00:00Z"
+      "createdAt": "2026-01-20T10:00:00Z",
+      "rejectionReason": "asdasd"
     },
     {
       "id": "2",
@@ -311,7 +362,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-13",
       "reason": "vvv",
-      "status": "Rejected",
+      "status": "Approved",
       "createdAt": "2026-02-09T06:33:07.580Z",
       "rejectionReason": "wwwwwww"
     },
@@ -362,6 +413,33 @@
       "status": "Rejected",
       "createdAt": "2026-02-09T07:34:32.550Z",
       "rejectionReason": "cccc"
+    },
+    {
+      "id": "1770630852546",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-12",
+      "reason": "gyuhmna ",
+      "status": "Approved",
+      "createdAt": "2026-02-09T09:54:12.546Z"
+    },
+    {
+      "id": "1771560935515",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-20",
+      "endDate": "2026-Feb-21",
+      "reason": "exam prep",
+      "status": "Pending",
+      "createdAt": "2026-02-20T04:15:35.515Z"
+    },
+    {
+      "id": "1771827348972",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-23",
+      "endDate": "2026-Feb-26",
+      "reason": "asdsad",
+      "status": "Pending",
+      "createdAt": "2026-02-23T06:15:48.972Z"
     }
   ]
 }

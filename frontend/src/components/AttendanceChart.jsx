@@ -21,7 +21,7 @@ export default function AttendanceChart(props) {
       </div>
 
       <recharts.PieChart
-        width={250}
+        width={280}
         height={250}
       >
         <recharts.Pie

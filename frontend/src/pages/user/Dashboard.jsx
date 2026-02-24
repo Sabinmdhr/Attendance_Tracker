@@ -15,73 +15,37 @@ const Dashboard = () => {
     return null;
   }
 
+  // Helpers
+  const getFormattedToday = () => new Date().toISOString().split("T")[0];
+  const today = getFormattedToday();
+  const storageKey = `markAttendance_${user.username}`; // per user key
+
   // State
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [dates, setDates] = useState([]);
   const [markAttendance, setMarkAttendance] = useState(() => {
-    // Initialize from localStorage
-  });
-  // Helpers
-  const getFormattedToday = () => new Date().toISOString().split("T")[0];
-
-  // Mark attendance as Present
-  const handleMarkAttendance = async () => {
+    // Lazy init: load from localStorage immediately
+    const stored = localStorage.getItem(storageKey);
+    if (!stored) return false;
     try {
-      const today = getFormattedToday();
-      const newAttendance = {
-        userId: user.username,
-        date: today,
-        status: "Present",
-        timestamp: new Date().toISOString(),
-      };
-
-      await api.post("/attendance", newAttendance, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setDates((prev) => [...prev, new Date(today)]);
-      setMarkAttendance(true);
-      localStorage.setItem(
-        "markAttendance",
-        JSON.stringify({ date: today, value: true }),
-      );
-
-      alert("Attendance marked successfully!");
-    } catch (err) {
-      console.error(err);
-      alert("Failed to mark attendance");
+      const parsed = JSON.parse(stored);
+      return parsed.date === today && parsed.value === true;
+    } catch {
+      return false;
     }
-  };
+  });
 
-  // Automatically mark Absent if not present by deadline
-  // const handleAbsentAutomatically = async (userDates) => {
-  //   if (!token || !user) return;
-
-  //   try {
-  //     const today = getFormattedToday();
-  //     const newAttendance = {
-  //       userId: user.username,
-  //       date: today,
-  //       status: "Absent",
-  //       timestamp: new Date().toISOString(),
-  //     };
-
-  //     await api.post("/attendance", newAttendance, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-
-  //     setMarkAttendance(true);
-
-  //     console.log("User automatically marked absent");
-  //   } catch (err) {
-  //     console.error("Failed to mark absent:", err);
-  //   }
-  // };
-
-  // Initial setup
+  // Save attendance to localStorage whenever it changes
   useEffect(() => {
-    // Fetch attendance stats
+    localStorage.setItem(
+      "storageKey",
+      JSON.stringify({ date: today, value: markAttendance }),
+    );
+  }, [markAttendance, storageKey, today]);
+
+  // Fetch stats and attendance from backend
+  useEffect(() => {
     const fetchStats = async () => {
       try {
         const res = await api.get("/attendance/stats", {
@@ -98,43 +62,54 @@ const Dashboard = () => {
       }
     };
 
-    const init = async () => {
-      // Fetch attendance data
-      let userDates = [];
+    const fetchAttendance = async () => {
       try {
         const res = await api.get("/attendance", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const attendanceData = res.data || [];
-
-        userDates = attendanceData
+        const userDates = attendanceData
           .filter((a) => a.userId === user.username)
           .map((a) => new Date(a.date));
-
         setDates(userDates);
+
+        // Check if attendance is already marked today in backend
+        const todayMarked = attendanceData.some(
+          (a) => a.userId === user.username && a.date === today,
+        );
+        if (todayMarked) setMarkAttendance(true); // ensures sync with backend
       } catch (err) {
         console.error("Error fetching attendance data:", err);
       }
-
-      // Set automatic absent deadline (12:15 PM)
-      // const deadline = new Date();
-      // deadline.setHours(12, 15, 0, 0);
-      // const timeUntilDeadline = deadline - new Date();
-
-      // if (timeUntilDeadline > 0) {
-      //   const timer = setTimeout(() => {
-      //     handleAbsentAutomatically(userDates);
-      //   }, timeUntilDeadline);
-
-      //   return () => clearTimeout(timer); // cleanup
-      // } else {
-      //   handleAbsentAutomatically(userDates);
-      // }
     };
 
-    init();
     fetchStats();
-  }, []);
+    fetchAttendance();
+  }, [token, user.username, today]);
+
+  // Mark attendance as Present
+  const handleMarkAttendance = async () => {
+    try {
+      const newAttendance = {
+        userId: user.username,
+        date: today,
+        status: "Present",
+        timestamp: new Date().toISOString(),
+      };
+
+      await api.post("/attendance", newAttendance, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setDates((prev) => [...prev, new Date(today)]);
+      setMarkAttendance(true);
+
+      alert("Attendance marked successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to mark attendance");
+    }
+  };
 
   if (loading) return <p>Loading attendance stats...</p>;
 
@@ -151,24 +126,26 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      <div className="flex justify-between items-center gap-5 m-5 h-fit rounded-lg">
+      <div className="flex justify-between items-center gap-5 m-5 rounded-lg">
+
         <Card>
           <CardContent>
             <AttendanceChart
+            width={null}
+            height={null} 
+
               present={stats?.presentDays || 0}
               total={stats?.totalDays || 1}
             />
           </CardContent>
         </Card>
-
         <AttendanceCalendar presentDates={dates} />
-
         <LeaveCard
           className="h-full w-full bg-amber-50"
           totalLeaves={24}
           usedLeaves={5}
         />
-      </div>
+              </div>
     </div>
   );
 };
