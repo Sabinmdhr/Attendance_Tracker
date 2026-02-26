@@ -7,15 +7,15 @@
       "role": "admin",
       "password": "admin",
       "id": "1",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
-      "id": "2",
       "username": "john_doe",
-      "password": "password123",
-      "role": "user",
       "name": "John Doe",
       "email": "john@example.com",
+      "role": "user",
+      "password": "password123",
+      "id": "2",
       "isBlocked": false
     },
     {
@@ -25,7 +25,7 @@
       "role": "user",
       "password": "password1234",
       "id": "3",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "id": "4",
@@ -34,7 +34,7 @@
       "role": "admin",
       "name": "Bob Wilson",
       "email": "bob@example.com",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "sushant",
@@ -51,13 +51,14 @@
       "email": "showshant716@gmail.com",
       "role": "admin",
       "id": "kqu7d6I",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Sabin_Manandhar",
       "name": "sabin manandhar",
       "email": "sabin@example.com",
       "role": "user",
+      "password": "password123",
       "id": "_mEffG5",
       "isBlocked": true
     },
@@ -86,7 +87,7 @@
       "email": "damn@gmail.com",
       "role": "user",
       "id": "l0aCqWx",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Dikshant_Adhikari",
@@ -148,6 +149,14 @@
       "email": "ss@gmail.com",
       "role": "user",
       "id": "-nY2Vhl"
+    },
+    {
+      "username": "balen",
+      "password": "password123",
+      "name": "Balen Shah",
+      "email": "balen@gmail.com",
+      "role": "user",
+      "id": "fyiAA3-"
     }
   ],
   "attendance": [
@@ -339,6 +348,13 @@
       "date": "2026-02-25",
       "status": "Present",
       "timestamp": "2026-02-25T09:56:18.911Z"
+    },
+    {
+      "id": "1772085226644",
+      "userId": "john_doe",
+      "date": "2026-02-26",
+      "status": "Present",
+      "timestamp": "2026-02-26T05:53:46.644Z"
     }
   ],
   "leaves": [
@@ -403,9 +419,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-11",
       "reason": "For Exam preparation",
-      "status": "Approved",
+      "status": "Rejected",
       "createdAt": "2026-02-09T05:35:54.194Z",
-      "rejectionReason": ""
+      "rejectionReason": "eeee"
     },
     {
       "id": "1770618787580",
@@ -423,7 +439,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "skyinggg\n",
-      "status": "Rejected",
+      "status": "Pending",
       "createdAt": "2026-02-09T06:42:10.795Z",
       "rejectionReason": "vcxvcx"
     },
@@ -433,7 +449,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "skyinggg\n",
-      "status": "Approved",
+      "status": "Pending",
       "createdAt": "2026-02-09T07:05:41.923Z"
     },
     {
@@ -442,7 +458,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "skyinggg\n",
-      "status": "Rejected",
+      "status": "Pending",
       "createdAt": "2026-02-09T07:06:41.551Z",
       "rejectionReason": ""
     },
@@ -462,7 +478,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "khana khana janu parcha",
-      "status": "Approved",
+      "status": "Pending",
       "createdAt": "2026-02-09T07:34:32.550Z",
       "rejectionReason": "cccc"
     },
@@ -472,9 +488,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "Bhok Lagyo",
-      "status": "Approved",
+      "status": "Rejected",
       "createdAt": "2026-02-09T10:13:37.578Z",
-      "rejectionReason": "chup"
+      "rejectionReason": ""
     },
     {
       "id": "1771909229741",
@@ -492,8 +508,9 @@
       "startDate": "2026-Feb-22",
       "endDate": "2026-Feb-23",
       "reason": "ssss",
-      "status": "Approved",
-      "createdAt": "2026-02-24T07:37:44.301Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-24T07:37:44.301Z",
+      "rejectionReason": ""
     },
     {
       "id": "1772013397585",
@@ -501,8 +518,28 @@
       "startDate": "2026-Feb-25",
       "endDate": "2026-Feb-25",
       "reason": "aaja aaudina hai ma",
-      "status": "Pending",
-      "createdAt": "2026-02-25T09:56:37.585Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-25T09:56:37.585Z",
+      "rejectionReason": "na aaija"
+    },
+    {
+      "id": "1772085243293",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-26",
+      "endDate": "2026-Feb-26",
+      "reason": "Whooooo",
+      "status": "Approved",
+      "createdAt": "2026-02-26T05:54:03.293Z"
+    },
+    {
+      "id": "1772085308734",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-27",
+      "endDate": "2026-Feb-27",
+      "reason": "ddddddd",
+      "status": "Rejected",
+      "createdAt": "2026-02-26T05:55:08.734Z",
+      "rejectionReason": ""
     }
   ]
 }

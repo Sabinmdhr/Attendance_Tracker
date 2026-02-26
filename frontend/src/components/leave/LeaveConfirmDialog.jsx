@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import api from "@/lib/api";
 
-const ConfirmDialog = ({ leave, id }) => {
+const ConfirmDialog = ({ leave, id, onLeaveUpdated }) => {
   const [rejectReason, setRejectReason] = useState("");
 
   const token = localStorage.getItem("token");
@@ -33,6 +33,7 @@ const ConfirmDialog = ({ leave, id }) => {
       { status: "Approved" },
       { headers: { Authorization: `Bearer ${token}` } },
     );
+    onLeaveUpdated();
   };
 
   const handleReject = async () => {
@@ -43,7 +44,7 @@ const ConfirmDialog = ({ leave, id }) => {
       { status: "Rejected", rejectionReason: rejectReason },
       { headers: { Authorization: `Bearer ${token}` } },
     );
-
+    onLeaveUpdated();
     setRejectReason("");
   };
 

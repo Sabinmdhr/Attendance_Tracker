@@ -66,24 +66,28 @@ const UserInfo = ({ user, onUserUpdated }) => {
         info.password = password;
       }
 
-      await axios.put(`http://localhost:3001/api/users/${user.id}`, info);
+      const res = await axios.put(
+        `http://localhost:3001/api/users/${user.id}`,
+        info,
+      );
 
+      onUserUpdated(res.data); // update locally
       setIsEditOpen(false);
-      onUserUpdated();
     } catch (err) {
       console.error("Error updating user:", err);
-      alert("Failed to update user. Check console.");
+      alert("Failed to update user.");
     } finally {
       setLoading(false);
     }
   };
   const handleUser = async () => {
     try {
-      await axios.patch(`http://localhost:3001/api/users/${user.id}`, {
-        isBlocked: !user.isBlocked,
-      });
+      const res = await axios.patch(
+        `http://localhost:3001/api/users/${user.id}`,
+        { isBlocked: !user.isBlocked },
+      );
 
-      onUserUpdated();
+      onUserUpdated(res.data);
     } catch (err) {
       console.error("Error updating user status:", err);
       alert("Failed to update user status.");

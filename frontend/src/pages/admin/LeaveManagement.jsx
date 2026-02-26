@@ -8,6 +8,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import SearchUser from "@/components/users/SearchUser";
 import TablePagination from "@/components/TablePagination.jsx";
 import { usePagination } from "@/hooks/usePagination";
+import { Spinner } from "@/components/ui/spinner";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
@@ -16,14 +17,24 @@ const LeaveManagement = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const debouncedSearch = useDebounce(searchVal);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    const fetchLeaves = async () => {
+  const fetchLeaves = async () => {
+    try {
+      setLoading(true);
       const res = await axios.get("http://localhost:3001/api/leaves");
       // console.log(res.data);
-
       setLeaves(res.data);
-    };
+    } catch (error) {
+      setError("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchLeaves();
   }, []);
 
@@ -66,9 +77,19 @@ const LeaveManagement = () => {
         />
       </div>
 
-      <div className="mt-10">
-        <LeaveTable leaves={paginatedLeaves} />{" "}
-      </div>
+      {loading ? (
+        <div className="flex justify-center py-10">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="mt-10">
+          <LeaveTable
+            leaves={paginatedLeaves}
+            userRole={user.role}
+            onLeaveUpdated={fetchLeaves}
+          />
+        </div>
+      )}
 
       <TablePagination
         currentPage={currentPage}
