@@ -298,18 +298,23 @@
       "date": "2026-02-24",
       "status": "Present",
       "timestamp": "2026-02-24T07:20:33.459Z"
+    },
+    {
+      "id": "1772013467330",
+      "userId": "john_doe",
+      "date": "2026-02-25",
+      "status": "Present",
+      "timestamp": "2026-02-25T09:57:47.330Z"
+    },
+    {
+      "id": "1772080254069",
+      "userId": "john_doe",
+      "date": "2026-02-26",
+      "status": "Present",
+      "timestamp": "2026-02-26T04:30:54.069Z"
     }
   ],
   "leaves": [
-    {
-      "id": "1",
-      "userId": "john_doe",
-      "startDate": "2026-02-10",
-      "endDate": "2026-02-12",
-      "reason": "Medical appointment and recovery",
-      "status": "Approved",
-      "createdAt": "2026-01-20T10:00:00Z"
-    },
     {
       "id": "2",
       "userId": "jane_smith",
@@ -377,55 +382,6 @@
       "rejectionReason": "wwwwwww"
     },
     {
-      "id": "1770619330795",
-      "userId": "john_doe",
-      "startDate": "2026-Feb-09",
-      "endDate": "2026-Feb-12",
-      "reason": "skyinggg\n",
-      "status": "Rejected",
-      "createdAt": "2026-02-09T06:42:10.795Z",
-      "rejectionReason": "vcxvcx"
-    },
-    {
-      "id": "1770620741923",
-      "userId": "john_doe",
-      "startDate": "2026-Feb-09",
-      "endDate": "2026-Feb-12",
-      "reason": "skyinggg\n",
-      "status": "Approved",
-      "createdAt": "2026-02-09T07:05:41.923Z"
-    },
-    {
-      "id": "1770620801551",
-      "userId": "john_doe",
-      "startDate": "2026-Feb-09",
-      "endDate": "2026-Feb-12",
-      "reason": "skyinggg\n",
-      "status": "Rejected",
-      "createdAt": "2026-02-09T07:06:41.551Z",
-      "rejectionReason": ""
-    },
-    {
-      "id": "1770620843776",
-      "userId": "john_doe",
-      "startDate": "2026-Feb-09",
-      "endDate": "2026-Feb-12",
-      "reason": "skyinggg\n",
-      "status": "Approved",
-      "createdAt": "2026-02-09T07:07:23.776Z",
-      "rejectionReason": ""
-    },
-    {
-      "id": "1770622472550",
-      "userId": "john_doe",
-      "startDate": "2026-Feb-09",
-      "endDate": "2026-Feb-12",
-      "reason": "khana klhana januh parcha",
-      "status": "Approved",
-      "createdAt": "2026-02-09T07:34:32.550Z",
-      "rejectionReason": "cccc"
-    },
-    {
       "id": "1770632017577",
       "userId": "sushant",
       "startDate": "2026-Feb-09",
@@ -453,6 +409,42 @@
       "reason": "ssss",
       "status": "Pending",
       "createdAt": "2026-02-24T07:37:44.301Z"
+    },
+    {
+      "id": "1772081991890",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-11",
+      "reason": "xxsss",
+      "status": "Pending",
+      "createdAt": "2026-02-26T04:59:51.890Z"
+    },
+    {
+      "id": "1772082241731",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-02",
+      "endDate": "2026-Feb-04",
+      "reason": "www",
+      "status": "Pending",
+      "createdAt": "2026-02-26T05:04:01.731Z"
+    },
+    {
+      "id": "1772083007563",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-20",
+      "endDate": "2026-Feb-28",
+      "reason": "cccc",
+      "status": "Pending",
+      "createdAt": "2026-02-26T05:16:47.563Z"
+    },
+    {
+      "id": "1772083026891",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-10",
+      "endDate": "2026-Feb-19",
+      "reason": "lll",
+      "status": "Pending",
+      "createdAt": "2026-02-26T05:17:06.891Z"
     }
   ]
 }

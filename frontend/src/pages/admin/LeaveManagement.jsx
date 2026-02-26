@@ -9,7 +9,6 @@ import { set } from "date-fns";
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("all");
-  const [userRole , setUserRole] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {

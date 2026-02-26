@@ -6,6 +6,7 @@ import UserTable from "@/components/users/UserTable";
 import axios from "axios";
 import SearchUser from "@/components/users/SearchUser";
 import { useDebounce } from "@/hooks/useDebounce";
+import WelcomeBar from "@/components/common/WelcomeBar";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -14,10 +15,10 @@ const Dashboard = () => {
   // const token = localStorage.getItem("token");
 
   // If not user than redirect to login page
-  if (!user || user.role !== "admin") {
-    window.location.href = "/";
-    return null;
-  }
+  // if (!user || user.role !== "admin") {
+  //   window.location.href = "/";
+  //   return null;
+  // }
 
   const fetchUsers = async () => {
     const res = await axios.get("http://localhost:3001/api/users");
@@ -38,24 +39,20 @@ const Dashboard = () => {
 
   return (
     <div>
+      <WelcomeBar />
+
       <div className="mx-18 mt-12">
         <div className="flex gap-4.5 justify-between items-center m-5">
           <UserForm onUserCreated={fetchUsers} />
 
-          <SearchUser
-            searchVal={searchVal}
-            setSearchVal={setSearchVal}
-          />
+          <SearchUser searchVal={searchVal} setSearchVal={setSearchVal} />
 
           <Link to="/leaveManagement">
             <Button>View Leave Requests</Button>
           </Link>
         </div>
 
-        <UserTable
-          users={filteredUsers}
-          onUserUpdated={fetchUsers}
-        />
+        <UserTable users={filteredUsers} onUserUpdated={fetchUsers} />
       </div>
     </div>
   );
