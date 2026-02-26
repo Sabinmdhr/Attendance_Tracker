@@ -28,6 +28,7 @@ const UserTable = ({ users, onUserUpdated }) => {
             <TableRow key={user.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{user.username}</TableCell>
+              {/* <TableCell>{user.name}</TableCell> */}
 
               <TableCell className="text-right">
                 <UserInfo

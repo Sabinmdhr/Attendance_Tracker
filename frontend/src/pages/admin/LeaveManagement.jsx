@@ -58,11 +58,12 @@ const LeaveManagement = () => {
     currentPage,
     rowsPerPage,
   );
+
   return (
     <div>
       <div className="mt-6">
         <Link to="/admin-dashboard">
-          <Button>Go Back</Button>
+          <Button variant="default">← Back</Button>
         </Link>
       </div>
 

@@ -17,6 +17,7 @@ import api from "@/lib/api";
 
 const ConfirmDialog = ({ leave, id, onLeaveUpdated }) => {
   const [rejectReason, setRejectReason] = useState("");
+  const [error, setError] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -39,13 +40,24 @@ const ConfirmDialog = ({ leave, id, onLeaveUpdated }) => {
   const handleReject = async () => {
     if (!isPending) return;
 
-    await api.patch(
-      `/leaves/${id}`,
-      { status: "Rejected", rejectionReason: rejectReason },
-      { headers: { Authorization: `Bearer ${token}` } },
-    );
-    onLeaveUpdated();
-    setRejectReason("");
+    if (!rejectReason.trim()) {
+      setError("Rejection reason is required.");
+      return;
+    }
+
+    try {
+      await api.patch(
+        `/leaves/${id}`,
+        { status: "Rejected", rejectionReason: rejectReason.trim() },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+
+      onLeaveUpdated();
+      setRejectReason("");
+      setError("");
+    } catch (err) {
+      setError("Failed to reject leave.");
+    }
   };
 
   return (
@@ -96,16 +108,25 @@ const ConfirmDialog = ({ leave, id, onLeaveUpdated }) => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Reject Leave Request?</AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogDescription required>
               This action will reject the leave request for the user.
             </AlertDialogDescription>
 
             <textarea
-              className="mt-2 resize-none border-2 p-3 w-full"
+              className={`mt-3 resize-none border rounded-md p-3 w-full focus:outline-none focus:ring-2 ${
+                error
+                  ? "border-red-500 focus:ring-red-200"
+                  : "border-slate-300 focus:ring-slate-200"
+              }`}
               value={rejectReason}
-              onChange={(e) => setRejectReason(e.target.value)}
-              placeholder="Write your reason for rejection."
+              onChange={(e) => {
+                setRejectReason(e.target.value);
+                if (e.target.value.trim()) setError("");
+              }}
+              placeholder="Write your reason for rejection..."
             />
+
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           </AlertDialogHeader>
 
           <AlertDialogFooter>

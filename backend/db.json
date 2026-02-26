@@ -10,13 +10,12 @@
       "isBlocked": true
     },
     {
-      "username": "john_doe",
+      "username": "john_doee",
       "name": "John Doe",
       "email": "john@example.com",
       "role": "user",
       "password": "password123",
-      "id": "2",
-      "isBlocked": false
+      "id": "2"
     },
     {
       "username": "jane_smith",
@@ -157,6 +156,57 @@
       "email": "balen@gmail.com",
       "role": "user",
       "id": "fyiAA3-"
+    },
+    {
+      "username": "Mark Zukerburg",
+      "password": "password123",
+      "name": "Mark Zukerburg",
+      "email": "mark@example.com",
+      "role": "user",
+      "id": "lzY0zOL",
+      "isBlocked": false
+    },
+    {
+      "username": "hamburger",
+      "password": "password123",
+      "name": "Hamburger",
+      "email": "burger@example.com",
+      "role": "admin",
+      "id": "F0r_bF2",
+      "isBlocked": false
+    },
+    {
+      "username": "Ishan_Awal",
+      "name": "Ishan Awal",
+      "email": "ishan@example.com",
+      "role": "user",
+      "password": "password",
+      "id": "oNRgx7x",
+      "isBlocked": true
+    },
+    {
+      "username": "Roberto_Firmino",
+      "password": "password123",
+      "name": "Roberto Firmino",
+      "email": "roberto@example.com",
+      "role": "user",
+      "id": "U7aki9l"
+    },
+    {
+      "username": "sss",
+      "password": "sssssssssss",
+      "name": "sssss",
+      "email": "ssss@gmail.com",
+      "role": "user",
+      "id": "QodOr1l"
+    },
+    {
+      "username": "sss",
+      "password": "ssss",
+      "name": "ssss",
+      "email": "ssssss@gmail.com",
+      "role": "user",
+      "id": "ZiPoMoh"
     }
   ],
   "attendance": [
@@ -449,8 +499,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "skyinggg\n",
-      "status": "Pending",
-      "createdAt": "2026-02-09T07:05:41.923Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-09T07:05:41.923Z",
+      "rejectionReason": "d"
     },
     {
       "id": "1770620801551",
@@ -458,7 +509,7 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "skyinggg\n",
-      "status": "Pending",
+      "status": "Rejected",
       "createdAt": "2026-02-09T07:06:41.551Z",
       "rejectionReason": ""
     },
@@ -520,7 +571,7 @@
       "reason": "aaja aaudina hai ma",
       "status": "Rejected",
       "createdAt": "2026-02-25T09:56:37.585Z",
-      "rejectionReason": "na aaija"
+      "rejectionReason": "Don't come.... "
     },
     {
       "id": "1772085243293",
@@ -537,9 +588,8 @@
       "startDate": "2026-Feb-27",
       "endDate": "2026-Feb-27",
       "reason": "ddddddd",
-      "status": "Rejected",
-      "createdAt": "2026-02-26T05:55:08.734Z",
-      "rejectionReason": ""
+      "status": "Pending",
+      "createdAt": "2026-02-26T05:55:08.734Z"
     }
   ]
 }

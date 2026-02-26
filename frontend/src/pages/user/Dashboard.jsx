@@ -127,12 +127,9 @@ const Dashboard = () => {
       </div>
 
       <div className="flex justify-between mt-8">
-
         <Card>
           <CardContent>
             <AttendanceChart
-
-
               present={stats?.presentDays || 0}
               total={stats?.totalDays || 1}
             />
@@ -144,7 +141,7 @@ const Dashboard = () => {
           totalLeaves={24}
           usedLeaves={5}
         />
-              </div>
+      </div>
     </div>
   );
 };

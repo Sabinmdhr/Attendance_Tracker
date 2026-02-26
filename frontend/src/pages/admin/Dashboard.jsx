@@ -34,7 +34,11 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const res = await axios.get("http://localhost:3001/api/users");
-      setUsers(res.data);
+      // Sort by newest first
+      const sorted = res.data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+      );
+      setUsers(sorted);
     } catch (error) {
       setError("Failed to fetch users");
     } finally {
@@ -63,14 +67,19 @@ const Dashboard = () => {
       prevUsers.map((u) => (u.id === updatedUser.id ? updatedUser : u)),
     );
   };
+
+  const handleUserCreated = (newUser) => {
+    setUsers((prevUsers) => [newUser, ...prevUsers]);
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <WelcomeBar />
 
       <div className="mx-18 mt-12">
         <div className="flex gap-4.5 justify-between items-center m-5">
-          <UserForm onUserCreated={fetchUsers} />
-
+          <UserForm onUserCreated={handleUserCreated} />
           <SearchUser
             searchVal={searchVal}
             setSearchVal={setSearchVal}
