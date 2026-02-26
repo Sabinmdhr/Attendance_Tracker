@@ -7,15 +7,15 @@
       "role": "admin",
       "password": "admin",
       "id": "1",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
-      "id": "2",
       "username": "john_doe",
-      "password": "password123",
-      "role": "user",
       "name": "John Doe",
       "email": "john@example.com",
+      "role": "user",
+      "password": "password123",
+      "id": "2",
       "isBlocked": false
     },
     {
@@ -25,7 +25,7 @@
       "role": "user",
       "password": "password1234",
       "id": "3",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "id": "4",
@@ -34,7 +34,7 @@
       "role": "admin",
       "name": "Bob Wilson",
       "email": "bob@example.com",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "sushant",
@@ -51,15 +51,16 @@
       "email": "showshant716@gmail.com",
       "role": "admin",
       "id": "kqu7d6I",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Sabin_Manandhar",
       "name": "sabin manandhar",
       "email": "sabin@example.com",
       "role": "user",
+      "password": "password123",
       "id": "_mEffG5",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Neymar",
@@ -68,7 +69,7 @@
       "role": "admin",
       "password": "Neymar",
       "id": "uZZTR0N",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "sushant",
@@ -86,7 +87,7 @@
       "email": "damn@gmail.com",
       "role": "user",
       "id": "l0aCqWx",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Dikshant_Adhikari",
@@ -114,6 +115,48 @@
       "password": "password",
       "id": "Ud15BLu",
       "isBlocked": true
+    },
+    {
+      "username": "Jhapali",
+      "name": "Jhapali",
+      "email": "jhapali@gmail.com",
+      "role": "user",
+      "password": "password123",
+      "id": "byanbwh",
+      "isBlocked": false
+    },
+    {
+      "username": "Neymar",
+      "password": "password123",
+      "name": "Neymar",
+      "email": "neymar@gmail.com",
+      "role": "user",
+      "id": "1317cMV",
+      "isBlocked": false
+    },
+    {
+      "username": "emilys",
+      "password": "password123",
+      "name": "Emilys",
+      "email": "emily@example.com",
+      "role": "user",
+      "id": "mI1tpA8"
+    },
+    {
+      "username": "ssss",
+      "password": "ss",
+      "name": "sss",
+      "email": "ss@gmail.com",
+      "role": "user",
+      "id": "-nY2Vhl"
+    },
+    {
+      "username": "balen",
+      "password": "password123",
+      "name": "Balen Shah",
+      "email": "balen@gmail.com",
+      "role": "user",
+      "id": "fyiAA3-"
     }
   ],
   "attendance": [
@@ -345,7 +388,7 @@
       "startDate": "2026-02-05",
       "endDate": "2026-02-05",
       "reason": "Personal work",
-      "status": "Pending",
+      "status": "Approved",
       "createdAt": "2026-01-22T11:15:00Z",
       "reviewedBy": "admin",
       "reviewedAt": "2026-01-23T10:30:00Z",
@@ -367,9 +410,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-11",
       "reason": "For Exam preparation",
-      "status": "Approved",
+      "status": "Rejected",
       "createdAt": "2026-02-09T05:35:54.194Z",
-      "rejectionReason": ""
+      "rejectionReason": "eeee"
     },
     {
       "id": "1770618787580",
@@ -387,9 +430,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-12",
       "reason": "Bhok Lagyo",
-      "status": "Approved",
+      "status": "Rejected",
       "createdAt": "2026-02-09T10:13:37.578Z",
-      "rejectionReason": "chup"
+      "rejectionReason": ""
     },
     {
       "id": "1771909229741",

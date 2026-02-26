@@ -4,11 +4,11 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import UserInfo from "./UserInfo";
 
 const UserTable = ({ users, onUserUpdated }) => {

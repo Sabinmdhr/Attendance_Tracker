@@ -5,11 +5,8 @@ import { Button } from "../ui/button";
 
 const SearchUser = ({ searchVal, setSearchVal }) => {
   return (
-    <div className="flex w-full justify-center">
-      <Field
-        orientation="horizontal"
-        className="w-[50%]"
-      >
+    <div className="w-[40%] ">
+      <Field orientation="horizontal">
         <Input
           type="search"
           placeholder="Search..."

@@ -4,42 +4,100 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import LeaveTable from "@/components/leave/LeaveTable";
 import UserFilter from "@/components/users/UserFilter";
-import { set } from "date-fns";
+import { useDebounce } from "@/hooks/useDebounce";
+import SearchUser from "@/components/users/SearchUser";
+import TablePagination from "@/components/TablePagination.jsx";
+import { usePagination } from "@/hooks/usePagination";
+import { Spinner } from "@/components/ui/spinner";
 
 const LeaveManagement = () => {
   const [leaves, setLeaves] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("all");
+  const [searchVal, setSearchVal] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const debouncedSearch = useDebounce(searchVal);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    const fetchLeaves = async () => {
+  const fetchLeaves = async () => {
+    try {
+      setLoading(true);
       const res = await axios.get("http://localhost:3001/api/leaves");
+      // console.log(res.data);
       setLeaves(res.data);
-    };
+    } catch (error) {
+      setError("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchLeaves();
   }, []);
 
-  const filteredLeaves =
-    currentFilter === "all"
-      ? leaves
-      : leaves.filter((leave) => leave.status.toLowerCase() === currentFilter);
-  // console.log(currentFilter);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [currentFilter, debouncedSearch]);
 
+  const filteredLeaves = leaves.filter((leave) => {
+    const matchesStatus =
+      currentFilter === "all" || leave.status?.toLowerCase() === currentFilter;
+
+    const matchesSearch =
+      !debouncedSearch ||
+      leave.userId?.toLowerCase().includes(debouncedSearch.toLowerCase());
+
+    return matchesStatus && matchesSearch;
+  });
+
+  const paginatedLeaves = usePagination(
+    filteredLeaves,
+    currentPage,
+    rowsPerPage,
+  );
   return (
-    <div className="mx-18 mt-12">
-      <div className="flex justify-between">
+    <div>
+      <div className="mt-6">
         <Link to="/admin-dashboard">
           <Button>Go Back</Button>
         </Link>
+      </div>
+
+      <div className="flex justify-evenly mt-4">
         <UserFilter
           currentFilter={currentFilter}
           setCurrentFilter={setCurrentFilter}
         />
+        <SearchUser
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+        />
       </div>
 
-      <div className="mt-15">
-        <LeaveTable leaves={filteredLeaves} userRole={user.role}/>
-      </div>
+      {loading ? (
+        <div className="flex justify-center py-10">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="mt-10">
+          <LeaveTable
+            leaves={paginatedLeaves}
+            userRole={user.role}
+            onLeaveUpdated={fetchLeaves}
+          />
+        </div>
+      )}
+
+      <TablePagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        totalItems={filteredLeaves.length}
+      />
     </div>
   );
 };

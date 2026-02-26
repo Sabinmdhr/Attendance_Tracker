@@ -8,10 +8,20 @@ import SearchUser from "@/components/users/SearchUser";
 import { useDebounce } from "@/hooks/useDebounce";
 import WelcomeBar from "@/components/common/WelcomeBar";
 
+import TablePagination from "@/components/TablePagination.jsx";
+import { usePagination } from "@/hooks/usePagination";
+import { Spinner } from "@/components/ui/spinner";
+
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const debouncedSearch = useDebounce(searchVal);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   // const token = localStorage.getItem("token");
 
   // If not user than redirect to login page
@@ -21,15 +31,24 @@ const Dashboard = () => {
   // }
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:3001/api/users");
-    setUsers(res.data);
+    try {
+      setLoading(true);
+      const res = await axios.get("http://localhost:3001/api/users");
+      setUsers(res.data);
+    } catch (error) {
+      setError("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  const debouncedSearch = useDebounce(searchVal);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearch]);
 
   const searchWords = debouncedSearch.toLowerCase().trim().split(/\s+/);
 
@@ -37,6 +56,13 @@ const Dashboard = () => {
     searchWords.every((word) => user.username.toLowerCase().includes(word)),
   );
 
+  const paginatedUsers = usePagination(filteredUsers, currentPage, rowsPerPage);
+
+  const handleUserUpdated = (updatedUser) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((u) => (u.id === updatedUser.id ? updatedUser : u)),
+    );
+  };
   return (
     <div>
       <WelcomeBar />
@@ -52,7 +78,24 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <UserTable users={filteredUsers} onUserUpdated={fetchUsers} />
+        {loading ? (
+          <div className="flex justify-center py-10">
+            <Spinner />
+          </div>
+        ) : (
+          <UserTable
+            users={paginatedUsers}
+            onUserUpdated={handleUserUpdated}
+          />
+        )}
+
+        <TablePagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
+          totalItems={filteredUsers.length}
+        />
       </div>
     </div>
   );
