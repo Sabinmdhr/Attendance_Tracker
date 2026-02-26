@@ -7,7 +7,7 @@
       "role": "admin",
       "password": "admin",
       "id": "1",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "john_doe",
@@ -25,7 +25,7 @@
       "role": "user",
       "password": "password1234",
       "id": "3",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "id": "4",
@@ -34,7 +34,7 @@
       "role": "admin",
       "name": "Bob Wilson",
       "email": "bob@example.com",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "sushant",
@@ -51,7 +51,7 @@
       "email": "showshant716@gmail.com",
       "role": "admin",
       "id": "kqu7d6I",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "Sabin_Manandhar",
@@ -60,7 +60,7 @@
       "role": "user",
       "password": "password123",
       "id": "_mEffG5",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "Neymar",
@@ -87,7 +87,7 @@
       "email": "damn@gmail.com",
       "role": "user",
       "id": "l0aCqWx",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "Dikshant_Adhikari",
@@ -105,7 +105,7 @@
       "email": "dvdv@gmail.com",
       "role": "user",
       "id": "AXd90BN",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "the_rock",
@@ -114,7 +114,7 @@
       "role": "user",
       "password": "password",
       "id": "Ud15BLu",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "username": "Jhapali",
@@ -148,7 +148,8 @@
       "name": "sss",
       "email": "ss@gmail.com",
       "role": "user",
-      "id": "-nY2Vhl"
+      "id": "-nY2Vhl",
+      "isBlocked": true
     },
     {
       "username": "balen",
@@ -355,6 +356,27 @@
       "date": "2026-02-26",
       "status": "Present",
       "timestamp": "2026-02-26T04:30:54.069Z"
+    },
+    {
+      "id": "1772080254069",
+      "userId": "john_doe",
+      "date": "2026-02-26",
+      "status": "Absent",
+      "timestamp": "2026-02-26T04:30:54.069Z"
+    },
+    {
+      "id": "1772098743163",
+      "userId": "Sabin_Manandhar",
+      "date": "2026-02-26",
+      "status": "Present",
+      "timestamp": "2026-02-26T09:39:03.163Z"
+    },
+    {
+      "id": "1772098743163",
+      "userId": "Sabin_Manandhar",
+      "date": "2026-02-26",
+      "status": "Absent",
+      "timestamp": "2026-02-26T09:39:03.163Z"
     }
   ],
   "leaves": [
@@ -488,6 +510,42 @@
       "reason": "lll",
       "status": "Pending",
       "createdAt": "2026-02-26T05:17:06.891Z"
+    },
+    {
+      "id": "1772098603748",
+      "userId": "Sabin_Manandhar",
+      "startDate": "2026-Feb-02",
+      "endDate": "2026-Feb-12",
+      "reason": "ddddd",
+      "status": "Pending",
+      "createdAt": "2026-02-26T09:36:43.748Z"
+    },
+    {
+      "id": "1772098616540",
+      "userId": "Sabin_Manandhar",
+      "startDate": "2026-Feb-10",
+      "endDate": "2026-Feb-12",
+      "reason": "dd",
+      "status": "Pending",
+      "createdAt": "2026-02-26T09:36:56.540Z"
+    },
+    {
+      "id": "1772098727620",
+      "userId": "Sabin_Manandhar",
+      "startDate": "2026-Feb-08",
+      "endDate": "2026-Feb-12",
+      "reason": "ss",
+      "status": "Pending",
+      "createdAt": "2026-02-26T09:38:47.620Z"
+    },
+    {
+      "id": "1772098736524",
+      "userId": "Sabin_Manandhar",
+      "startDate": "2026-Feb-04",
+      "endDate": "2026-Feb-13",
+      "reason": "sadada",
+      "status": "Pending",
+      "createdAt": "2026-02-26T09:38:56.524Z"
     }
   ]
 }

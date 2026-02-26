@@ -1,34 +1,43 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserForm from "@/components/users/UserForm";
 import UserTable from "@/components/users/UserTable";
 import axios from "axios";
 import SearchUser from "@/components/users/SearchUser";
-import { useDebounce } from "@/hooks/useDebounce";
 import WelcomeBar from "@/components/common/WelcomeBar";
 
 import TablePagination from "@/components/TablePagination.jsx";
 import { usePagination } from "@/hooks/usePagination";
 import { Spinner } from "@/components/ui/spinner";
+import { AdminAppContext } from "@/context/AdminAppContext";
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [searchVal, setSearchVal] = useState("");
+  // const [users, setUsers] = useState([]);
+  // const [searchVal, setSearchVal] = useState("");
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const debouncedSearch = useDebounce(searchVal);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+const {
+    users,
+  setUsers,
+  searchVal,
+  setSearchVal,
+  currentPage,
+  setCurrentPage,
+  rowsPerPage,
+  setRowsPerPage,
+  debouncedSearch,
+  error,
+  loading,
+  setLoading,
+  setError} = useContext(AdminAppContext);
+
+
   const user = JSON.parse(localStorage.getItem("user"));
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const debouncedSearch = useDebounce(searchVal);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // const token = localStorage.getItem("token");
-
-  // If not user than redirect to login page
-  // if (!user || user.role !== "admin") {
-  //   window.location.href = "/";
-  //   return null;
-  // }
 
   const fetchUsers = async () => {
     try {
@@ -83,10 +92,7 @@ const Dashboard = () => {
             <Spinner />
           </div>
         ) : (
-          <UserTable
-            users={paginatedUsers}
-            onUserUpdated={handleUserUpdated}
-          />
+          <UserTable users={paginatedUsers} onUserUpdated={handleUserUpdated} />
         )}
 
         <TablePagination

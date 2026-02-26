@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LeaveTable from "@/components/leave/LeaveTable";
@@ -9,16 +9,33 @@ import SearchUser from "@/components/users/SearchUser";
 import TablePagination from "@/components/TablePagination.jsx";
 import { usePagination } from "@/hooks/usePagination";
 import { Spinner } from "@/components/ui/spinner";
+import { AdminAppContext } from "@/context/AdminAppContext";
 
 const LeaveManagement = () => {
-  const [leaves, setLeaves] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("all");
-  const [searchVal, setSearchVal] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const debouncedSearch = useDebounce(searchVal);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [leaves, setLeaves] = useState([]);
+  // const [searchVal, setSearchVal] = useState("");
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  const {
+    adminLeaves,
+    setAdminLeaves,
+    loading,
+    setLoading,
+    error,
+    setError,
+    currentPage,
+    setCurrentPage,
+    rowsPerPage,
+    setRowsPerPage,
+    currentFilter,
+    setCurrentFilter,
+    debouncedSearch,
+    searchVal,
+    setSearchVal,
+  } = useContext(AdminAppContext);
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchLeaves = async () => {
@@ -26,9 +43,9 @@ const LeaveManagement = () => {
       setLoading(true);
       const res = await axios.get("http://localhost:3001/api/leaves");
       // console.log(res.data);
-      setLeaves(res.data);
+      setAdminLeaves(res.data);
     } catch (error) {
-      setError("Failed to fetch users");
+      setError("Failed to fetch leaves");
     } finally {
       setLoading(false);
     }
@@ -42,7 +59,7 @@ const LeaveManagement = () => {
     setCurrentPage(1);
   }, [currentFilter, debouncedSearch]);
 
-  const filteredLeaves = leaves.filter((leave) => {
+  const filteredLeaves = adminLeaves.filter((leave) => {
     const matchesStatus =
       currentFilter === "all" || leave.status?.toLowerCase() === currentFilter;
 
@@ -71,10 +88,7 @@ const LeaveManagement = () => {
           currentFilter={currentFilter}
           setCurrentFilter={setCurrentFilter}
         />
-        <SearchUser
-          searchVal={searchVal}
-          setSearchVal={setSearchVal}
-        />
+        <SearchUser searchVal={searchVal} setSearchVal={setSearchVal} />
       </div>
 
       {loading ? (

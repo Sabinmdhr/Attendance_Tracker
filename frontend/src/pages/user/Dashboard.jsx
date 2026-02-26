@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AttendanceChart from "@/components/AttendanceChart";
@@ -6,25 +6,13 @@ import AttendanceCalendar from "@/components/attendance/AttendanceCalendar";
 import LeaveCard from "@/components/users/LeaveCard";
 import api from "@/lib/api";
 import WelcomeBar from "@/components/common/WelcomeBar";
-
+import { UserAppContext } from "@/context/UserAppContext";
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
-
-  // if (!user) {
-  //   window.location.href = "/";
-  //   return null;
-  // }
-
-  // Helpers
   const getFormattedToday = () => new Date().toISOString().split("T")[0];
   const today = getFormattedToday();
   const storageKey = `markAttendance_${user.username}`; // per user key
-
-  // State
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [dates, setDates] = useState([]);
   const [markAttendance, setMarkAttendance] = useState(() => {
     // Lazy init: load from localStorage immediately
     const stored = localStorage.getItem(storageKey);
@@ -37,6 +25,17 @@ const Dashboard = () => {
     }
   });
 
+  const {
+    stats,
+    setStats,
+    loading,
+    setLoading,
+    dates,
+    setDates,
+    leaves,
+    setLeaves,
+  } = useContext(UserAppContext);
+  
   // Save attendance to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(
@@ -139,7 +138,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <AttendanceCalendar presentDates={dates} />
-        <LeaveCard className="" totalLeaves={24} usedLeaves={5} />
+        <LeaveCard totalLeaves={5} usedLeaves={leaves.length} />
       </div>
     </div>
   );
