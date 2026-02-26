@@ -5,7 +5,7 @@ export default function LeaveCard({ totalLeaves = 24, usedLeaves = 5 }) {
   const remaining = totalLeaves - usedLeaves;
 
   return (
-    <Card className="w-72">
+    <Card className="w-72 h-full">
       <CardHeader>
         <CardTitle>Leaves Remaining</CardTitle>
       </CardHeader>

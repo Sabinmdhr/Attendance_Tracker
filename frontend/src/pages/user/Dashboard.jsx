@@ -114,8 +114,8 @@ const Dashboard = () => {
   if (loading) return <p>Loading attendance stats...</p>;
 
   return (
-    <div>
-      <div className="m-5 p-5 border border-gray-300 rounded-lg shadow-md flex justify-between items-center">
+    <div className="m-5">
+      <div className="p-5 border border-gray-300 rounded-lg shadow-md flex justify-between items-center">
         <h1>Mark Attendance</h1>
         <Button
           onClick={handleMarkAttendance}
@@ -126,13 +126,12 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      <div className="flex justify-between items-center gap-5 m-5 rounded-lg">
+      <div className="flex justify-between mt-8">
 
         <Card>
           <CardContent>
             <AttendanceChart
-            width={null}
-            height={null} 
+
 
               present={stats?.presentDays || 0}
               total={stats?.totalDays || 1}
@@ -141,7 +140,7 @@ const Dashboard = () => {
         </Card>
         <AttendanceCalendar presentDates={dates} />
         <LeaveCard
-          className="h-full w-full bg-amber-50"
+          className=""
           totalLeaves={24}
           usedLeaves={5}
         />

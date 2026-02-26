@@ -13,7 +13,7 @@ import ConfirmDialog from "./LeaveConfirmDialog";
 
 // leaves = []
 
-const LeaveTable = ({ leaves }) => {
+const LeaveTable = ({ leaves, userRole }) => {
   return (
     <div>
       <Table>
@@ -26,7 +26,8 @@ const LeaveTable = ({ leaves }) => {
             <TableHead className="text-center">End Date</TableHead>
             <TableHead className="text-center">Status</TableHead>
             <TableHead className="text-center">Reason</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+              {userRole === "admin" && (
+            <TableHead className="text-right">Actions</TableHead>)}
           </TableRow>
         </TableHeader>
 
@@ -40,13 +41,11 @@ const LeaveTable = ({ leaves }) => {
               <TableCell>{leave.endDate}</TableCell>
               <TableCell>{leave.status}</TableCell>
               <TableCell>{leave.reason}</TableCell>
-
-              <TableCell>
-                <ConfirmDialog
-                  leave={leave}
-                  id={leave.id}
-                />
-              </TableCell>
+              {userRole === "admin" && (
+                <TableCell>
+                  <ConfirmDialog leave={leave} id={leave.id} />
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
