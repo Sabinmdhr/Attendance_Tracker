@@ -71,7 +71,7 @@ const UserInfo = ({ user, onUserUpdated }) => {
         info,
       );
 
-      onUserUpdated(res.data); // update locally
+      onUserUpdated(res.data);
       setIsEditOpen(false);
     } catch (err) {
       console.error("Error updating user:", err);
@@ -108,11 +108,13 @@ const UserInfo = ({ user, onUserUpdated }) => {
           </Button>
         </DialogTrigger>
         <DialogContent
-          className="max-w-6xl w-full max-h-[90vh] overflow-y-auto"
+          className="sm:max-w-none w-[45vw] max-w-350 max-h-[90vh] overflow-y-auto"
           showCloseButton={false}
         >
           <DialogHeader>
-            <DialogTitle>Details of the User: {user.username}</DialogTitle>
+            <DialogTitle>
+              Details of the User: <i>{user.username}</i>
+            </DialogTitle>
           </DialogHeader>
 
           <div className="py-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start w-full">

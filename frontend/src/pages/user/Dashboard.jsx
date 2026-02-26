@@ -35,7 +35,7 @@ const Dashboard = () => {
     leaves,
     setLeaves,
   } = useContext(UserAppContext);
-  
+
   // Save attendance to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(
@@ -128,7 +128,11 @@ const Dashboard = () => {
         </Button>
       </div>
 
+<<<<<<< HEAD
+      <div className="flex justify-between mt-8">
+=======
       <div className="m-5 flex justify-between mt-8">
+>>>>>>> 397c1c1c51d9bc44a2c93dc182bfa15f50a46453
         <Card>
           <CardContent>
             <AttendanceChart
