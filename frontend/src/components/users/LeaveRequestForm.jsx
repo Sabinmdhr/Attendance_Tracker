@@ -20,61 +20,65 @@ import { Textarea } from "../ui/textarea";
 import { format } from "date-fns";
 import api from "@/lib/api";
 
-const UserForm = ({show, setShow}) => {
+const UserForm = ({ totalLeaves, setLeaves, leaves }) => {
   const [date, setDate] = React.useState({
     from: null,
     to: null,
   });
-const [reason , setReason] = useState("");
+  const leavesLimit = 5;
+  const [show, setShow] = useState(false);
+  const [reason, setReason] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
-   const handleSubmit = async () => {
-     const from = format(date.from, "yyy-MMM-dd");
-     const to = format(date.to, "yyy-MMM-dd");
+  const handleSubmit = async () => {
+    const from = format(date.from, "yyy-MMM-dd");
+    const to = format(date.to, "yyy-MMM-dd");
 
-     const newLeaves = {
-       userId: user.username,
-       startDate: from,
-       endDate: to,
-       reason: reason,
-       status: "Pending",
-       createdAt: new Date().toISOString(),
-     };
-     await api.post("/leaves", newLeaves, {
-       headers: { Authorization: `Bearer ${token}` },
-     });
+    const newLeaves = {
+      userId: user.username,
+      startDate: from,
+      endDate: to,
+      reason: reason,
+      status: "Pending",
+      createdAt: new Date().toISOString(),
+    };
+    await api.post("/leaves", newLeaves, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-     // Optional: reset form
-     setDate({ from: null, to: null });
-     setReason("");
-   };
-
-
-
-
+    // Optional: reset form
+    setDate({ from: null, to: null });
+    setReason("");
+    setLeaves([...leaves, newLeaves]); // Update parent state to reflect new leave
+  };
 
   return (
     <div>
       <Dialog>
         <form>
           <DialogTrigger asChild>
-            <Button variant="default" onClick={()=>setShow(true)}>Create Leave Request</Button>
+            <Button variant="default" onClick={() => setShow(true)}>
+              Create Leave Request
+            </Button>
           </DialogTrigger>
-          {show && (
+
+          {totalLeaves < leavesLimit && show ? (
             <DialogContent className="sm:max-w-sm">
               <DialogHeader>
                 <DialogTitle>Add a new leave request</DialogTitle>
                 <DialogDescription>
-                  Click save when you&apos;re done.
+                  Click save when you're done.
                 </DialogDescription>
               </DialogHeader>
+
               <div className="grid gap-3 py-4">
                 <DateRangePicker
                   date={date}
                   setDate={setDate}
                   className="w-full"
                 />
+
                 <div className="grid gap-2">
                   <Label htmlFor="reason">Reason for leave:</Label>
                   <Textarea
@@ -82,11 +86,8 @@ const [reason , setReason] = useState("");
                     id="reason"
                     name="reason"
                     value={reason}
-                    type="textarea"
                     placeholder="Enter reason for leave request"
-                    onChange={(e) => {
-                      setReason(e.target.value);
-                    }}
+                    onChange={(e) => setReason(e.target.value)}
                   />
                 </div>
               </div>
@@ -95,14 +96,25 @@ const [reason , setReason] = useState("");
                 <DialogClose asChild>
                   <Button variant="outline">Cancel</Button>
                 </DialogClose>
-                <Button type="submit" onClick={()=>{
-                  handleSubmit()
-                  setShow(false)
-                }}>
+
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    handleSubmit();
+                    setShow(false);
+                  }}
+                >
                   Save changes
                 </Button>
               </DialogFooter>
             </DialogContent>
+          ) : (
+            show && (
+              <p className="text-red-500 mt-2">
+                You have reached the maximum number of leave requests (
+                {leavesLimit}).
+              </p>
+            )
           )}
         </form>
       </Dialog>

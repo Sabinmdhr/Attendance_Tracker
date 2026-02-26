@@ -5,15 +5,16 @@ import AttendanceChart from "@/components/AttendanceChart";
 import AttendanceCalendar from "@/components/attendance/AttendanceCalendar";
 import LeaveCard from "@/components/users/LeaveCard";
 import api from "@/lib/api";
+import WelcomeBar from "@/components/common/WelcomeBar";
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
-  if (!user) {
-    window.location.href = "/";
-    return null;
-  }
+  // if (!user) {
+  //   window.location.href = "/";
+  //   return null;
+  // }
 
   // Helpers
   const getFormattedToday = () => new Date().toISOString().split("T")[0];
@@ -114,8 +115,10 @@ const Dashboard = () => {
   if (loading) return <p>Loading attendance stats...</p>;
 
   return (
-    <div className="m-5">
-      <div className="p-5 border border-gray-300 rounded-lg shadow-md flex justify-between items-center">
+    <div className="">
+      <WelcomeBar />
+
+      <div className="m-5 p-5 border border-gray-300 rounded-lg shadow-md flex justify-between items-center">
         <h1>Mark Attendance</h1>
         <Button
           onClick={handleMarkAttendance}
@@ -126,7 +129,11 @@ const Dashboard = () => {
         </Button>
       </div>
 
+<<<<<<< HEAD
       <div className="flex justify-between mt-8">
+=======
+      <div className="m-5 flex justify-between mt-8">
+>>>>>>> 397c1c1c51d9bc44a2c93dc182bfa15f50a46453
         <Card>
           <CardContent>
             <AttendanceChart
@@ -136,11 +143,15 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <AttendanceCalendar presentDates={dates} />
+<<<<<<< HEAD
         <LeaveCard
           className=""
           totalLeaves={24}
           usedLeaves={5}
         />
+=======
+        <LeaveCard className="" totalLeaves={24} usedLeaves={5} />
+>>>>>>> 397c1c1c51d9bc44a2c93dc182bfa15f50a46453
       </div>
     </div>
   );

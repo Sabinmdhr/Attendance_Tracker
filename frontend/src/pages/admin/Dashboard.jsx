@@ -25,10 +25,10 @@ const Dashboard = () => {
   // const token = localStorage.getItem("token");
 
   // If not user than redirect to login page
-  if (!user || user.role !== "admin") {
-    window.location.href = "/";
-    return null;
-  }
+  // if (!user || user.role !== "admin") {
+  //   window.location.href = "/";
+  //   return null;
+  // }
 
   const fetchUsers = async () => {
     try {

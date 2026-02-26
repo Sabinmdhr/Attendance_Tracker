@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,11 +10,13 @@ import {
 import { Input } from "@/components/ui/input";
 import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@/context/AuthContext";
 
 export function LoginForm({ className, role = "user", ...props }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,11 +25,8 @@ export function LoginForm({ className, role = "user", ...props }) {
 
     try {
       const res = await api.post("/login", { username, password, role });
-      console.log("Login success:", res.data);
 
-      // Store token and user info
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      login(res.data.user, res.data.token); // Update auth context with user and token
 
       // Redirect based on role
       navigate(

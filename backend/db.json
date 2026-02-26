@@ -393,30 +393,21 @@
       "timestamp": "2026-02-24T07:20:33.459Z"
     },
     {
-      "id": "1772013378911",
+      "id": "1772013467330",
       "userId": "john_doe",
       "date": "2026-02-25",
       "status": "Present",
-      "timestamp": "2026-02-25T09:56:18.911Z"
+      "timestamp": "2026-02-25T09:57:47.330Z"
     },
     {
-      "id": "1772085226644",
+      "id": "1772080254069",
       "userId": "john_doe",
       "date": "2026-02-26",
       "status": "Present",
-      "timestamp": "2026-02-26T05:53:46.644Z"
+      "timestamp": "2026-02-26T04:30:54.069Z"
     }
   ],
   "leaves": [
-    {
-      "id": "1",
-      "userId": "john_doe",
-      "startDate": "2026-02-10",
-      "endDate": "2026-02-12",
-      "reason": "Medical appointment and recovery",
-      "status": "Approved",
-      "createdAt": "2026-01-20T10:00:00Z"
-    },
     {
       "id": "2",
       "userId": "jane_smith",
@@ -559,12 +550,20 @@
       "startDate": "2026-Feb-22",
       "endDate": "2026-Feb-23",
       "reason": "ssss",
-      "status": "Rejected",
-      "createdAt": "2026-02-24T07:37:44.301Z",
-      "rejectionReason": ""
+      "status": "Pending",
+      "createdAt": "2026-02-24T07:37:44.301Z"
     },
     {
-      "id": "1772013397585",
+      "id": "1772081991890",
+      "userId": "john_doe",
+      "startDate": "2026-Feb-09",
+      "endDate": "2026-Feb-11",
+      "reason": "xxsss",
+      "status": "Pending",
+      "createdAt": "2026-02-26T04:59:51.890Z"
+    },
+    {
+      "id": "1772082241731",
       "userId": "john_doe",
       "startDate": "2026-Feb-25",
       "endDate": "2026-Feb-25",
@@ -574,16 +573,16 @@
       "rejectionReason": "Don't come.... "
     },
     {
-      "id": "1772085243293",
+      "id": "1772083007563",
       "userId": "john_doe",
-      "startDate": "2026-Feb-26",
-      "endDate": "2026-Feb-26",
-      "reason": "Whooooo",
-      "status": "Approved",
-      "createdAt": "2026-02-26T05:54:03.293Z"
+      "startDate": "2026-Feb-20",
+      "endDate": "2026-Feb-28",
+      "reason": "cccc",
+      "status": "Pending",
+      "createdAt": "2026-02-26T05:16:47.563Z"
     },
     {
-      "id": "1772085308734",
+      "id": "1772083026891",
       "userId": "john_doe",
       "startDate": "2026-Feb-27",
       "endDate": "2026-Feb-27",

@@ -6,11 +6,10 @@ import api from '@/lib/api';
 
 const Leaves = () => {
   const [leaves, setLeaves] = useState([]);
-  const [show, setShow] = useState(false);
   const [userRole , setUserRole] = useState("");
 const user = JSON.parse(localStorage.getItem("user"));
 const token = localStorage.getItem("token");
-
+const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
 
@@ -19,7 +18,6 @@ const token = localStorage.getItem("token");
       const filteredLeaves = res.data.filter(
         (item) => item.userId === user.username,
       );
-      const totalLeaves = filteredLeaves.length;
       setLeaves(filteredLeaves)
     };
     fetchLeaves();
@@ -35,10 +33,10 @@ const token = localStorage.getItem("token");
     <div>
       <div className="p-5">
 
-        <LeaveRequestForm  show={show} setShow={setShow} />
+        <LeaveRequestForm  setLeaves={setLeaves} totalLeaves = {leaves.length} />
       </div>
       <div>
-        <LeaveTable leaves={leaves} userRole={userRole}/>
+        <LeaveTable leaves={leaves} userRole={user.role}/>
       </div>
     </div>
   );
