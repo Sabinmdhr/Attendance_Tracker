@@ -6,8 +6,6 @@ import { useDebounce } from "@/hooks/useDebounce";
 export const AdminAppContext = createContext();
 
 export default function AdminAppProvider({ children }) {
-
-
   // Admin dashboard states
   const [users, setUsers] = useState([]);
   const [adminLeaves, setAdminLeaves] = useState([]);
@@ -18,9 +16,7 @@ export default function AdminAppProvider({ children }) {
   const [error, setError] = useState(null);
   const [currentFilter, setCurrentFilter] = useState("all");
   const [loading, setLoading] = useState(true);
-
-
-
+  const [sortBy, setSortBy] = useState("newest");
 
   return (
     <AdminAppContext.Provider
@@ -42,7 +38,8 @@ export default function AdminAppProvider({ children }) {
         setCurrentFilter,
         adminLeaves,
         setAdminLeaves,
-
+        sortBy,
+        setSortBy,
       }}
     >
       {children}

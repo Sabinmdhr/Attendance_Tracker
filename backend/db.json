@@ -7,7 +7,7 @@
       "role": "admin",
       "password": "admin",
       "id": "1",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "john_doee",
@@ -24,7 +24,7 @@
       "role": "user",
       "password": "password1234",
       "id": "3",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "id": "4",
@@ -33,7 +33,7 @@
       "role": "admin",
       "name": "Bob Wilson",
       "email": "bob@example.com",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "sushant",
@@ -50,7 +50,7 @@
       "email": "showshant716@gmail.com",
       "role": "admin",
       "id": "kqu7d6I",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Sabin_Manandhar",
@@ -59,7 +59,7 @@
       "role": "user",
       "password": "password123",
       "id": "_mEffG5",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Neymar",
@@ -71,7 +71,7 @@
       "isBlocked": false
     },
     {
-      "username": "sushant",
+      "username": "sushant bossnet",
       "name": "showshant",
       "email": "wow@gmail.com",
       "role": "user",
@@ -86,7 +86,7 @@
       "email": "damn@gmail.com",
       "role": "user",
       "id": "l0aCqWx",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Dikshant_Adhikari",
@@ -104,7 +104,7 @@
       "email": "dvdv@gmail.com",
       "role": "user",
       "id": "AXd90BN",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "the_rock",
@@ -113,7 +113,7 @@
       "role": "user",
       "password": "password",
       "id": "Ud15BLu",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "username": "Jhapali",
@@ -147,8 +147,7 @@
       "name": "sss",
       "email": "ss@gmail.com",
       "role": "user",
-      "id": "-nY2Vhl",
-      "isBlocked": true
+      "id": "-nY2Vhl"
     },
     {
       "username": "balen",
@@ -169,12 +168,11 @@
     },
     {
       "username": "hamburger",
-      "password": "password123",
       "name": "Hamburger",
       "email": "burger@example.com",
-      "role": "admin",
-      "id": "F0r_bF2",
-      "isBlocked": false
+      "role": "user",
+      "password": "password123",
+      "id": "F0r_bF2"
     },
     {
       "username": "Ishan_Awal",
@@ -208,6 +206,82 @@
       "email": "ssssss@gmail.com",
       "role": "user",
       "id": "ZiPoMoh"
+    },
+    {
+      "username": "Justin_Timberlakee",
+      "name": "Justin Timberlake",
+      "email": "justin@example.com",
+      "role": "user",
+      "password": "password123",
+      "id": "M81LTX_"
+    },
+    {
+      "username": "Virat Kohlii",
+      "name": "Virat Kohli",
+      "email": "virat@example.com",
+      "role": "user",
+      "password": "password@123",
+      "id": "DpdPGI_"
+    },
+    {
+      "username": "chocolate_123",
+      "password": "password123",
+      "name": "chocolate",
+      "email": "chocolate@example.com",
+      "role": "user",
+      "id": "Tm3vYCr"
+    },
+    {
+      "username": "jay ho",
+      "name": "Jay Rathore",
+      "email": "jay@example.com",
+      "role": "user",
+      "password": "password123",
+      "id": "ICUPb2o",
+      "isBlocked": false
+    },
+    {
+      "username": "sabinn",
+      "name": "password",
+      "email": "sabin@gmail.com",
+      "role": "user",
+      "password": "sabin",
+      "id": "9mZvElO",
+      "isBlocked": true
+    },
+    {
+      "username": "wow",
+      "password": "password@123",
+      "name": "wow wow",
+      "email": "wow@example.com",
+      "role": "user",
+      "id": "VDm4gWB",
+      "isBlocked": true
+    },
+    {
+      "username": "Hari_",
+      "password": "password123",
+      "name": "Hari Bahadur",
+      "email": "hari@example.com",
+      "role": "user",
+      "id": "ASO5Yy6"
+    },
+    {
+      "username": "kinda",
+      "password": "password123",
+      "name": "kinda",
+      "email": "kinda@gmail.com",
+      "role": "user",
+      "id": "SCBxbE3",
+      "isBlocked": false
+    },
+    {
+      "username": "Nima",
+      "password": "password123",
+      "name": "Nima K",
+      "email": "nima@example.com",
+      "role": "user",
+      "id": "-W6Li2S"
     }
   ],
   "attendance": [
@@ -406,35 +480,14 @@
       "date": "2026-02-26",
       "status": "Present",
       "timestamp": "2026-02-26T04:30:54.069Z"
-    },
-    {
-      "id": "1772080254069",
-      "userId": "john_doe",
-      "date": "2026-02-26",
-      "status": "Absent",
-      "timestamp": "2026-02-26T04:30:54.069Z"
-    },
-    {
-      "id": "1772098743163",
-      "userId": "Sabin_Manandhar",
-      "date": "2026-02-26",
-      "status": "Present",
-      "timestamp": "2026-02-26T09:39:03.163Z"
-    },
-    {
-      "id": "1772098743163",
-      "userId": "Sabin_Manandhar",
-      "date": "2026-02-26",
-      "status": "Absent",
-      "timestamp": "2026-02-26T09:39:03.163Z"
     }
   ],
   "leaves": [
     {
       "id": "2",
       "userId": "jane_smith",
-      "startDate": "2026-01-25",
-      "endDate": "2026-01-26",
+      "startDate": "2026-Jan-25",
+      "endDate": "2026-Jan-26",
       "reason": "Family emergency",
       "status": "Rejected",
       "createdAt": "2026-01-18T14:30:00Z",
@@ -445,8 +498,8 @@
     {
       "id": "3",
       "userId": "bob_wilson",
-      "startDate": "2026-02-05",
-      "endDate": "2026-02-05",
+      "startDate": "2026-Feb-05",
+      "endDate": "2026-Feb-05",
       "reason": "Personal work",
       "status": "Rejected",
       "createdAt": "2026-01-22T11:15:00Z",
@@ -457,8 +510,8 @@
     {
       "id": "4",
       "userId": "sushant_basnet",
-      "startDate": "2026-02-05",
-      "endDate": "2026-02-05",
+      "startDate": "2026-Feb-05",
+      "endDate": "2026-Feb-05",
       "reason": "Personal work",
       "status": "Approved",
       "createdAt": "2026-01-22T11:15:00Z",
@@ -469,8 +522,8 @@
     {
       "id": "1770017668608",
       "userId": "jane_smith",
-      "startDate": "2026-02-23",
-      "endDate": "2026-02-23",
+      "startDate": "2026-Feb-23",
+      "endDate": "2026-Feb-23",
       "reason": "Trekkiing with family",
       "status": "Approved",
       "createdAt": "2026-02-02T07:34:28.608Z",
@@ -581,8 +634,9 @@
       "startDate": "2026-Feb-09",
       "endDate": "2026-Feb-11",
       "reason": "xxsss",
-      "status": "Pending",
-      "createdAt": "2026-02-26T04:59:51.890Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-26T04:59:51.890Z",
+      "rejectionReason": "q"
     },
     {
       "id": "1772082241731",
@@ -600,7 +654,7 @@
       "startDate": "2026-Feb-20",
       "endDate": "2026-Feb-28",
       "reason": "cccc",
-      "status": "Pending",
+      "status": "Approved",
       "createdAt": "2026-02-26T05:16:47.563Z"
     },
     {
@@ -609,44 +663,18 @@
       "startDate": "2026-Feb-27",
       "endDate": "2026-Feb-27",
       "reason": "ddddddd",
-      "status": "Pending",
-      "createdAt": "2026-02-26T05:17:06.891Z"
+      "status": "Rejected",
+      "createdAt": "2026-02-26T05:55:08.734Z",
+      "rejectionReason": "noo"
     },
     {
-      "id": "1772098603748",
-      "userId": "Sabin_Manandhar",
-      "startDate": "2026-Feb-02",
-      "endDate": "2026-Feb-12",
-      "reason": "ddddd",
+      "id": "1772170335884",
+      "userId": "hamburger",
+      "startDate": "2026-Feb-27",
+      "endDate": "2026-Feb-28",
+      "reason": "Marriage",
       "status": "Pending",
-      "createdAt": "2026-02-26T09:36:43.748Z"
-    },
-    {
-      "id": "1772098616540",
-      "userId": "Sabin_Manandhar",
-      "startDate": "2026-Feb-10",
-      "endDate": "2026-Feb-12",
-      "reason": "dd",
-      "status": "Pending",
-      "createdAt": "2026-02-26T09:36:56.540Z"
-    },
-    {
-      "id": "1772098727620",
-      "userId": "Sabin_Manandhar",
-      "startDate": "2026-Feb-08",
-      "endDate": "2026-Feb-12",
-      "reason": "ss",
-      "status": "Pending",
-      "createdAt": "2026-02-26T09:38:47.620Z"
-    },
-    {
-      "id": "1772098736524",
-      "userId": "Sabin_Manandhar",
-      "startDate": "2026-Feb-04",
-      "endDate": "2026-Feb-13",
-      "reason": "sadada",
-      "status": "Pending",
-      "createdAt": "2026-02-26T09:38:56.524Z"
+      "createdAt": "2026-02-27T05:32:15.885Z"
     }
   ]
 }

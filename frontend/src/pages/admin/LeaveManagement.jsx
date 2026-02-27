@@ -1,24 +1,26 @@
 import { Button } from "@/components/ui/button";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LeaveTable from "@/components/leave/LeaveTable";
 import UserFilter from "@/components/users/UserFilter";
-import { useDebounce } from "@/hooks/useDebounce";
 import SearchUser from "@/components/users/SearchUser";
 import TablePagination from "@/components/TablePagination.jsx";
 import { usePagination } from "@/hooks/usePagination";
 import { Spinner } from "@/components/ui/spinner";
 import { AdminAppContext } from "@/context/AdminAppContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const LeaveManagement = () => {
-  // const [leaves, setLeaves] = useState([]);
-  // const [searchVal, setSearchVal] = useState("");
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [rowsPerPage, setRowsPerPage] = useState(10);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
+  const [sortBy, setSortBy] = useState("newest");
   const {
     adminLeaves,
     setAdminLeaves,
@@ -59,16 +61,51 @@ const LeaveManagement = () => {
     setCurrentPage(1);
   }, [currentFilter, debouncedSearch]);
 
-  const filteredLeaves = adminLeaves.filter((leave) => {
-    const matchesStatus =
-      currentFilter === "all" || leave.status?.toLowerCase() === currentFilter;
+  const filteredLeaves = useMemo(() => {
+    let result = adminLeaves.filter((leave) => {
+      const matchesStatus =
+        currentFilter === "all" ||
+        leave.status?.toLowerCase() === currentFilter;
 
-    const matchesSearch =
-      !debouncedSearch ||
-      leave.userId?.toLowerCase().includes(debouncedSearch.toLowerCase());
+      const matchesSearch =
+        !debouncedSearch ||
+        leave.userId?.toLowerCase().includes(debouncedSearch.toLowerCase());
 
-    return matchesStatus && matchesSearch;
-  });
+      return matchesStatus && matchesSearch;
+    });
+
+    switch (sortBy) {
+      case "newest":
+        return result.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        );
+
+      case "oldest":
+        return result.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+        );
+
+      case "startDate":
+        return result.sort(
+          (a, b) => new Date(a.startDate) - new Date(b.startDate),
+        );
+
+      case "status":
+        const order = {
+          pending: 0,
+          approved: 1,
+          rejected: 2,
+        };
+
+        return result.sort(
+          (a, b) =>
+            order[a.status.toLowerCase()] - order[b.status.toLowerCase()],
+        );
+
+      default:
+        return result;
+    }
+  }, [adminLeaves, currentFilter, debouncedSearch, sortBy]);
 
   const paginatedLeaves = usePagination(
     filteredLeaves,
@@ -94,7 +131,34 @@ const LeaveManagement = () => {
           setSearchVal={setSearchVal}
         />
       </div>
+      <div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">Sort: {sortBy}</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-32">
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+              <DropdownMenuRadioGroup
+                value={sortBy}
+                onValueChange={setSortBy}
+              >
+                <DropdownMenuRadioItem value="newest">
+                  Newest First
+                </DropdownMenuRadioItem>
 
+                <DropdownMenuRadioItem value="oldest">
+                  Oldest First
+                </DropdownMenuRadioItem>
+
+                <DropdownMenuRadioItem value="status">
+                  Status
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       {loading ? (
         <div className="flex justify-center py-10">
           <Spinner />

@@ -34,7 +34,7 @@ const ConfirmDialog = ({ leave, id, onLeaveUpdated }) => {
       { status: "Approved" },
       { headers: { Authorization: `Bearer ${token}` } },
     );
-    onLeaveUpdated();
+    onLeaveUpdated(updatedLeave);
   };
 
   const handleReject = async () => {
