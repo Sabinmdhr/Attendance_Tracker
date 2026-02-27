@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
-export default function LeaveCard({ totalLeaves = 24, usedLeaves = 5 }) {
+export default function LeaveCard({ totalLeaves, usedLeaves }) {
   const remaining = totalLeaves - usedLeaves;
 
   return (
