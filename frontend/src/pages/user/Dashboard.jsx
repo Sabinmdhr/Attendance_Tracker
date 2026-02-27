@@ -129,11 +129,8 @@ const Dashboard = () => {
         </Button>
       </div>
 
-<<<<<<< HEAD
-      <div className="flex justify-between mt-8">
-=======
+      {/* <div className="flex justify-between mt-8"> */}
       <div className="m-5 flex justify-between mt-8">
->>>>>>> 397c1c1c51d9bc44a2c93dc182bfa15f50a46453
         <Card>
           <CardContent>
             <AttendanceChart
@@ -143,15 +140,11 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <AttendanceCalendar presentDates={dates} />
-<<<<<<< HEAD
         <LeaveCard
           className=""
           totalLeaves={24}
           usedLeaves={5}
         />
-=======
-        <LeaveCard className="" totalLeaves={24} usedLeaves={5} />
->>>>>>> 397c1c1c51d9bc44a2c93dc182bfa15f50a46453
       </div>
     </div>
   );

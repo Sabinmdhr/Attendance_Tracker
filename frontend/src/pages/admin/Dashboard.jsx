@@ -15,20 +15,11 @@ import { Spinner } from "@/components/ui/spinner";
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [searchVal, setSearchVal] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const debouncedSearch = useDebounce(searchVal);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // const token = localStorage.getItem("token");
-
-  // If not user than redirect to login page
-  // if (!user || user.role !== "admin") {
-  //   window.location.href = "/";
-  //   return null;
-  // }
 
   const fetchUsers = async () => {
     try {
